@@ -1,0 +1,17 @@
+  <get>
+    <filter type="subtree">
+      <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+        <config-instances>
+          <config-instance>
+            <instance-name>default</instance-name>
+            <config-instance-default-vrf>
+            <entity-configurations>
+             <entity-configuration/>
+            </entity-configurations>
+            </config-instance-default-vrf>
+          </config-instance>
+        </config-instances>
+      </bgp>
+    </filter>
+  </get>
+

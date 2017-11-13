@@ -1,0 +1,378 @@
+
+tconf> send_request /nobackup/dhjain/xr-dev-efr7301/netconf-get-srpolicy.txt
+
+File specified: /nobackup/dhjain/xr-dev-efr7301/netconf-get-srpolicy.txt
+
+--------------- Sent to NETCONF agent ----------------
+
+#1012
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+
+  <get>
+    <filter type="subtree">
+      <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+        <instances>
+          <instance>
+            <instance-name>default</instance-name>
+            <instance-active>
+              <default-vrf>
+              <afs>
+               <af>
+                <af-name>ipv4sr-policy</af-name>
+                <path-used-table>
+                <path><path-information>
+                 <nh-tunnel/>
+                </path-information>
+                 <attributes-after-policy-in>
+                 <common-attributes>
+                  <tunnel-encap/>
+                 </common-attributes>
+                 </attributes-after-policy-in>
+                </path>
+               </path-used-table>
+               </af>
+               </afs>
+              </default-vrf>
+            </instance-active>
+          </instance>
+        </instances>
+      </bgp>
+    </filter>
+  </get>
+
+
+</rpc>
+##
+
+------------------------------------------------------
+
+----------- Received from NETCONF agent --------------
+
+
+#3591
+<?xml version="1.0"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+   <instances>
+    <instance>
+     <instance-name>default</instance-name>
+     <instance-active>
+      <default-vrf>
+       <afs>
+        <af>
+         <af-name>ipv4sr-policy</af-name>
+         <path-used-table>
+          <path>
+           <rd>0000000000000000</rd>
+           <network>00000000000000010a0a0003</network>
+           <prefix-length>96</prefix-length>
+           <neighbor-address>20.10.0.1</neighbor-address>
+           <route-type>used</route-type>
+           <source-rd>0000000000000000</source-rd>
+           <path-id>0</path-id>
+           <path-information>
+            <nh-tunnel>
+             <tunnel-type>sa-none</tunnel-type>
+             <tunnel-name>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</tunnel-name>
+             <has-tunnel>false</has-tunnel>
+             <is-tunnel-up>false</is-tunnel-up>
+             <is-tunnel-info-stale>false</is-tunnel-info-stale>
+             <is-tunnel-registered>false</is-tunnel-registered>
+             <tunnel-v6-required>false</tunnel-v6-required>
+             <tunnel-v6-enabled>false</tunnel-v6-enabled>
+             <binding-label>0</binding-label>
+             <tunnel-if-handle>0</tunnel-if-handle>
+             <last-tunnel-update>0</last-tunnel-update>
+            </nh-tunnel>
+           </path-information>
+           <attributes-after-policy-in>
+            <common-attributes>
+             <tunnel-encap>
+              <sr-policy>
+               <tunnel-encap-type>15</tunnel-encap-type>
+               <binding-sid>
+                <type>label</type>
+                <label>100001</label>
+               </binding-sid>
+               <allocated-binding-sid>
+                <type>none</type>
+               </allocated-binding-sid>
+               <preference>1</preference>
+               <state>false</state>
+               <request-state>requested</request-state>
+               <segment-list>
+                <weight>1</weight>
+                <segment>
+                 <type>label</type>
+                 <label>16100</label>
+                </segment>
+                <segment>
+                 <type>label</type>
+                 <label>16200</label>
+                </segment>
+               </segment-list>
+               <segment-list>
+                <weight>2</weight>
+                <segment>
+                 <type>label</type>
+                 <label>16300</label>
+                </segment>
+                <segment>
+                 <type>label</type>
+                 <label>16200</label>
+                </segment>
+               </segment-list>
+              </sr-policy>
+             </tunnel-encap>
+            </common-attributes>
+           </attributes-after-policy-in>
+          </path>
+
+#3210
+          <path>
+           <rd>0000000000000000</rd>
+           <network>00000000000000010a0a0003</network>
+           <prefix-length>96</prefix-length>
+           <neighbor-address>90.10.0.1</neighbor-address>
+           <route-type>used</route-type>
+           <source-rd>0000000000000000</source-rd>
+           <path-id>0</path-id>
+           <path-information>
+            <nh-tunnel>
+             <tunnel-type>sa-none</tunnel-type>
+             <tunnel-name>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</tunnel-name>
+             <has-tunnel>false</has-tunnel>
+             <is-tunnel-up>false</is-tunnel-up>
+             <is-tunnel-info-stale>false</is-tunnel-info-stale>
+             <is-tunnel-registered>false</is-tunnel-registered>
+             <tunnel-v6-required>false</tunnel-v6-required>
+             <tunnel-v6-enabled>false</tunnel-v6-enabled>
+             <binding-label>0</binding-label>
+             <tunnel-if-handle>0</tunnel-if-handle>
+             <last-tunnel-update>0</last-tunnel-update>
+            </nh-tunnel>
+           </path-information>
+           <attributes-after-policy-in>
+            <common-attributes>
+             <tunnel-encap>
+              <sr-policy>
+               <tunnel-encap-type>15</tunnel-encap-type>
+               <binding-sid>
+                <type>label</type>
+                <label>300001</label>
+               </binding-sid>
+               <allocated-binding-sid>
+                <type>none</type>
+               </allocated-binding-sid>
+               <preference>1</preference>
+               <state>false</state>
+               <request-state>request-pending</request-state>
+               <segment-list>
+                <weight>1</weight>
+                <segment>
+                 <type>label</type>
+                 <label>16100</label>
+                </segment>
+                <segment>
+                 <type>label</type>
+                 <label>16200</label>
+                </segment>
+               </segment-list>
+               <segment-list>
+                <weight>2</weight>
+                <segment>
+                 <type>label</type>
+                 <label>16300</label>
+                </segment>
+                <segment>
+                 <type>label</type>
+                 <label>16200</label>
+                </segment>
+               </segment-list>
+              </sr-policy>
+             </tunnel-encap>
+            </common-attributes>
+           </attributes-after-policy-in>
+          </path>
+
+#2871
+          <path>
+           <rd>0000000000000000</rd>
+           <network>00000000000000020a0a0003</network>
+           <prefix-length>96</prefix-length>
+           <neighbor-address>20.10.0.1</neighbor-address>
+           <route-type>used</route-type>
+           <source-rd>0000000000000000</source-rd>
+           <path-id>0</path-id>
+           <path-information>
+            <nh-tunnel>
+             <tunnel-type>sa-none</tunnel-type>
+             <tunnel-name>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</tunnel-name>
+             <has-tunnel>false</has-tunnel>
+             <is-tunnel-up>false</is-tunnel-up>
+             <is-tunnel-info-stale>false</is-tunnel-info-stale>
+             <is-tunnel-registered>false</is-tunnel-registered>
+             <tunnel-v6-required>false</tunnel-v6-required>
+             <tunnel-v6-enabled>false</tunnel-v6-enabled>
+             <binding-label>0</binding-label>
+             <tunnel-if-handle>0</tunnel-if-handle>
+             <last-tunnel-update>0</last-tunnel-update>
+            </nh-tunnel>
+           </path-information>
+           <attributes-after-policy-in>
+            <common-attributes>
+             <tunnel-encap>
+              <sr-policy>
+               <tunnel-encap-type>15</tunnel-encap-type>
+               <binding-sid>
+                <type>label</type>
+                <label>100002</label>
+               </binding-sid>
+               <allocated-binding-sid>
+                <type>none</type>
+               </allocated-binding-sid>
+               <preference>1</preference>
+               <state>false</state>
+               <request-state>requested</request-state>
+               <segment-list>
+                <weight>1</weight>
+                <segment>
+                 <type>ipv6</type>
+                 <ipv6-address>100:abe::</ipv6-address>
+                </segment>
+                <segment>
+                 <type>label</type>
+                 <label>16200</label>
+                </segment>
+               </segment-list>
+              </sr-policy>
+             </tunnel-encap>
+            </common-attributes>
+           </attributes-after-policy-in>
+          </path>
+
+#2860
+          <path>
+           <rd>0000000000000000</rd>
+           <network>00000000000000020a0a0003</network>
+           <prefix-length>96</prefix-length>
+           <neighbor-address>90.10.0.1</neighbor-address>
+           <route-type>used</route-type>
+           <source-rd>0000000000000000</source-rd>
+           <path-id>0</path-id>
+           <path-information>
+            <nh-tunnel>
+             <tunnel-type>sa-none</tunnel-type>
+             <tunnel-name>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</tunnel-name>
+             <has-tunnel>false</has-tunnel>
+             <is-tunnel-up>false</is-tunnel-up>
+             <is-tunnel-info-stale>false</is-tunnel-info-stale>
+             <is-tunnel-registered>false</is-tunnel-registered>
+             <tunnel-v6-required>false</tunnel-v6-required>
+             <tunnel-v6-enabled>false</tunnel-v6-enabled>
+             <binding-label>0</binding-label>
+             <tunnel-if-handle>0</tunnel-if-handle>
+             <last-tunnel-update>0</last-tunnel-update>
+            </nh-tunnel>
+           </path-information>
+           <attributes-after-policy-in>
+            <common-attributes>
+             <tunnel-encap>
+              <sr-policy>
+               <tunnel-encap-type>15</tunnel-encap-type>
+               <binding-sid>
+                <type>label</type>
+                <label>300002</label>
+               </binding-sid>
+               <allocated-binding-sid>
+                <type>none</type>
+               </allocated-binding-sid>
+               <preference>1</preference>
+               <state>false</state>
+               <request-state>request-pending</request-state>
+               <segment-list>
+                <weight>1</weight>
+                <segment>
+                 <type>label</type>
+                 <label>16300</label>
+                </segment>
+                <segment>
+                 <type>label</type>
+                 <label>16200</label>
+                </segment>
+               </segment-list>
+              </sr-policy>
+             </tunnel-encap>
+            </common-attributes>
+           </attributes-after-policy-in>
+          </path>
+
+#1812
+          <path>
+           <rd>0000000000000000</rd>
+           <network>00000000000000030a0a0003</network>
+           <prefix-length>96</prefix-length>
+           <neighbor-address>90.10.0.1</neighbor-address>
+           <route-type>used</route-type>
+           <source-rd>0000000000000000</source-rd>
+           <path-id>0</path-id>
+           <path-information>
+            <nh-tunnel>
+             <tunnel-type>sa-none</tunnel-type>
+             <tunnel-name>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</tunnel-name>
+             <has-tunnel>false</has-tunnel>
+             <is-tunnel-up>false</is-tunnel-up>
+             <is-tunnel-info-stale>false</is-tunnel-info-stale>
+             <is-tunnel-registered>false</is-tunnel-registered>
+             <tunnel-v6-required>false</tunnel-v6-required>
+             <tunnel-v6-enabled>false</tunnel-v6-enabled>
+             <binding-label>0</binding-label>
+             <tunnel-if-handle>0</tunnel-if-handle>
+             <last-tunnel-update>0</last-tunnel-update>
+            </nh-tunnel>
+           </path-information>
+          </path>
+
+#1812
+          <path>
+           <rd>0000000000000000</rd>
+           <network>00000000000000040a0a0003</network>
+           <prefix-length>96</prefix-length>
+           <neighbor-address>90.10.0.1</neighbor-address>
+           <route-type>used</route-type>
+           <source-rd>0000000000000000</source-rd>
+           <path-id>0</path-id>
+           <path-information>
+            <nh-tunnel>
+             <tunnel-type>sa-none</tunnel-type>
+             <tunnel-name>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</tunnel-name>
+             <has-tunnel>false</has-tunnel>
+             <is-tunnel-up>false</is-tunnel-up>
+             <is-tunnel-info-stale>false</is-tunnel-info-stale>
+             <is-tunnel-registered>false</is-tunnel-registered>
+             <tunnel-v6-required>false</tunnel-v6-required>
+             <tunnel-v6-enabled>false</tunnel-v6-enabled>
+             <binding-label>0</binding-label>
+             <tunnel-if-handle>0</tunnel-if-handle>
+             <last-tunnel-update>0</last-tunnel-update>
+            </nh-tunnel>
+           </path-information>
+          </path>
+
+#164
+         </path-used-table>
+        </af>
+       </afs>
+      </default-vrf>
+     </instance-active>
+    </instance>
+   </instances>
+  </bgp>
+ </data>
+</rpc-reply>
+
+##
+------------------------------------------------------
+netconf>
+

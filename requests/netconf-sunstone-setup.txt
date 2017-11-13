@@ -1,0 +1,182 @@
+
+The instructions to bootup sunstone and setup the netconf and ssh for testing are in below wiki.   
+
+http://wikicentral.cisco.com/display/GROUP/XRV9K+Setup+for+Netconf
+
+Tried those and below are the logs. 
+
+Build Sunstone full k9 image.  We need k9 image so that ssh server can be in image.
+----------
+
+1)  pull  xr-dev lineup 
+2)  pull  crypto component.
+     acme mw -noprompt -comp crypto/toolkit@crypto/cepki/toolkit.lu
+3)  jam -d2 -j8 -l xrv9k-fullk9-x.iso
+
+copy to some place which is accessible from other ADS.  
+
+  138  8:17    cp  img-xrv9k/xrv9k-fullk9-x.iso /ws/dhjain-sjc/
+
+Copy image to one of the UCS machines with right VXR version, where sunstone sim can be launched 
+(This is different from your own ADS since it requires particular VXR version etc mentioned in 2.1 and 2.2 of above wiki).
+--------------
+
+I have been using ng-install-1 . There are others listed in this page.
+
+http://vxr-lnx-11/ganglia/?p=2&c=vxr-servers&h=&hc=8&p=2
+
+1) ssh ng-install-1 
+    mkdir /nobackup/dhjain/  (crate your directory there first time)
+    cd /nobackup/dhjain/ 
+    cp  /ws/dhjain-sjc/xrv9k-fullk9-x.iso ./
+
+
+Launch Sunstone sim ( on UCS same as above)
+------------
+1) ng-install-1 # cd /nobackup/dhjain/
+1) ng-install-1 # source /auto/edatools/oicad/tools/vxr2_user/latest/setup.csh
+2) ng-install-1 # sim xrv9k
+3) ng-install-1 # vi sim-config.xml   
+
+<Update the PATH_TO_IMAGE to your image location> 
+example after updating sim-config.xml
+ <Cli key="drive#0" value="file=/nobackup/dhjain/xrv9k-fullk9-x.iso,media=cdrom" />
+
+4) ng-install-1 # sim
+
+(This will launch a new terminal with sunstone simulation with 5 tabs in it. For XR VM, aux, admin vm, aux. and qemu prompt)
+
+Setup SSH tunnel in UCS (VXR machine) to XR VM of sunstone.
+-----------------
+
+So for example ip of ng-install-1 is  (172.27.229.78) 
+
+Note: if there's another simulator running on same UCS, you need to move port 8830, 5555 and addr 3.0.0.1 to something else!
+
+Below sets up a ssh tunnel from ng-install-1 interface to netconf on router.
+Outside app line ytool can use 172.27.229.78 and port 830 in NETCONF setting
+
+
+ssh -f -N -g -L 8830:3.0.0.1:830 172.27.229.78 (IP address of the UCS) <<<<< SSH request to 172.27.229.78:8830 will be forwarded to 3.0.0.1:830 >>>>>
+
+Below is to forward a random tcp port 5555 request to router tcp port 5555.
+(I believe in ENXR case this will be useful because netconf in enxr runs on TCP  5555
+as well, besides running on SSH 830).
+
+ssh -f -N -g -L 5555:3.0.0.1:5555 172.27.229.78 (IP address of the UCS) <<<< TCP request to 172.27.229.78:5555 will be forwarded to 3.0.0.1:5555 >>>>>
+
+Then one more for regular ssh at port 22 of the router VM.
+So that yTool can access show run output via ssh through CLI.
+ytool will use 172.27.229.78 and port 6666 in device settings.
+
+[dhjain@ng-install-1 network-scripts]$ ssh -f -N -g -L 6666:3.0.0.1:22 172.27.229.78
+
+
+Configure ssh and netconf on routeri (XR VM on sunstone).
+----------------
+
+telnet vrf default ipv4 server max-servers 10
+username lab
+ group root-lr
+ group cisco-support
+ secret 5 $1$7j70$BY4j4lptImVhDL3bZAWPL1
+!
+interface MgmtEth0/RP0/CPU0/0
+ ipv4 address 3.0.0.1 255.255.255.0
+!
+netconf-yang agent ssh
+ssh server netconf port 830
+
+Configure  interface on UCS (VXR machine ng-install-1 in our case).
+--------------------------
+I believe this becomes other side of the SSH tunnel configured above.  (with ip 3.0.0.2) 
+[dhjain@ng-install-1 dhjain]$ grep MgmtXr .tapmap
+p0gen0pc0.MgmtXr T67136003c99fc
+[dhjain@ng-install-1 dhjain]$                    
+su -
+
+#ifconfig T379393c99fc 3.0.0.2/24 up  <<<< replace T379393c99fc with output above
+exit <<<< don't forget to exit from root
+
+Now you can telnet to xr-vm from UCS with this telnet:
+telnet 3.0.0.1
+
+[dhjain@ng-install-1 dhjain]$ telnet 3.0.0.1
+Trying 3.0.0.1...
+Connected to 3.0.0.1.
+Escape character is '^]'.
+
+User Access Verification
+
+Username:   
+
+===============
+run crypto key gen on XR VM on sunstone simulation to generate RSA keys.
+RP/0/RP0/CPU0:ios#crypto key generate rsa
+Tue Oct 13 07:04:17.931 UTC
+The name for the keys will be: the_default
+  Choose the size of the key modulus in the r                                          l Purpose Keypair. Choosing a key modulus gre                                          s.
+
+How many bits in the modulus [1024]:
+Generating RSA keys ...
+Done w/ crypto generate keypair
+[OK]
+===============
+Now the XR VM is accessible via ssh from outside.
+You can test this by Going to your ADS (not the ng-install-1) and try from there.
+(172.27.229.78 is IP of the ng-install-1. So essentially we are ssh to 8830 port on ng-install-1. 
+Due to ssh tunnel setup above it will redirect it to 3.0.0.1/830 which is XR VM Router IP and netconf agent port).
+[dhjain@sjc-ads-4502 xr-dev2]$  ssh -s -l lab 172.27.229.78 -p 8830 netconf
+lab@172.27.229.78's password: <lab> 
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <capabilities>
+  <capability>urn:ietf:params:n
+
+===
+Running Norio's Script .  This should be run form your ADS (not ng-install-1)
+   160  12:35   /auto/mgbl/scripts/xr_oc_ietf_mapping_sanity.py --transport ssh --port 8830 --host 172.27.229.78 --user lab --detail
+
+[dhjain@sjc-ads-4502 xr-dev2]$ /auto/mgbl/scripts/xr_oc_ietf_mapping_sanity.py --transport ssh --port 8830 --host 172.27.229.78 --user lab  --detail
+
+### XR NETCONF Open Config Model Mapping Sanity Test ###
+
+[Testing '/bgp']
+[Testing '/bgp/global']
+[Testing '/bgp/global/config']
+<snip>
+Total number of nodes tested : 445
+Total number of nodes passed : 445
+Total number of nodes failed : 0
+
+See 'sanity_log.txt' for the detail test log
+
+=====
+
+
+I had seen below error earlier which got fixed by removing one entry from rsa key file on ADS.
+
+[dhjain@sjc-ads-4502 xr-dev2]$ ssh -s -l lab 172.27.229.78 -p 8830 netconf
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that the RSA host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+ad:1c:8d:4d:1e:2c:3e:75:d0:e2:27:a0:1e:50:4d:c3.
+Please contact your system administrator.
+Add correct host key in /users/dhjain/.ssh/known_hosts to get rid of this message.
+Offending key in /users/dhjain/.ssh/known_hosts:24
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+Agent forwarding is disabled to avoid man-in-the-middle attacks.
+Permission denied (password).
+[dhjain@sjc-ads-4502 xr-dev2]$                      
+
+
+To fix above remove 172.27.229.78 from below file from known_hosts file from your home directory.
+
+  158  12:34   vi ~/.ssh/known_hosts
+
+
+

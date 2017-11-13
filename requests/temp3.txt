@@ -1,0 +1,90 @@
+<edit-config>
+<target><candidate/></target>
+<config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <bgp xmlns="http://openconfig.net/yang/bgp">
+   <global>
+    <config>
+     <as>2</as>
+     <router-id>20.10.0.1</router-id>
+    </config>
+    <afi-safis>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+    </afi-safis>
+   </global>
+   <neighbors>
+    <neighbor>
+     <neighbor-address>10.10.0.1</neighbor-address>
+     <config>
+      <neighbor-address>10.10.0.1</neighbor-address>
+      <peer-as>1</peer-as>
+     </config>
+     <ebgp-multihop>
+      <config>
+       <enabled>true</enabled>
+       <multihop-ttl>10</multihop-ttl>
+      </config>
+     </ebgp-multihop>
+     <transport>
+      <config>
+       <local-address>Loopback0</local-address>
+      </config>
+     </transport>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-labelled-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-labelled-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>pass</import-policy>
+         <export-policy>pass</export-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>30.10.0.1</neighbor-address>
+     <config>
+      <neighbor-address>30.10.0.1</neighbor-address>
+      <peer-as>3</peer-as>
+     </config>
+     <ebgp-multihop>
+      <config>
+       <enabled>true</enabled>
+       <multihop-ttl>10</multihop-ttl>
+      </config>
+     </ebgp-multihop>
+     <transport>
+      <config>
+       <local-address>Loopback0</local-address>
+      </config>
+     </transport>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-labelled-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-labelled-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>pass</import-policy>
+         <export-policy>pass</export-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+   </neighbors>
+</bgp>
+</config>
+</edit-config>

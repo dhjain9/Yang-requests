@@ -1,0 +1,9 @@
+ <get-config>
+  <source>
+    <running/>
+  </source>
+  <filter type = "subtree">
+   <bgp xmlns="http://openconfig.net/yang/bgp"> 
+   </bgp>
+  </filter>
+ </get-config>

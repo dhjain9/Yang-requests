@@ -1,0 +1,1237 @@
+module: bgp
+ +rw /bgp-routing
+ +rw /bgp-routing/bgp-router
+ +rw /bgp-routing/bgp-router/bgp-version?   string 
+ +rw /bgp-routing/bgp-router/local-as-number?   uint32 
+ +rw /bgp-routing/bgp-router/local-as-identifier?   inet:ip-address 
+ +rw /bgp-routing/bgp-router/router-id
+ +rw /bgp-routing/bgp-router/router-id/enable?   boolean 
+ +rw (config-type)?
+:(static)
+ +rw /bgp-routing/bgp-router/router-id/config-type/static/ip-address?   boolean 
+:(auto-config)
+ +rw /bgp-routing/bgp-router/router-id/config-type/auto-config/enable-auto-config?   boolean 
+ +rw /bgp-routing/bgp-router/rpki-config
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config
+ +rw (server)?
+:(ip-address)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/server/ip-address/ip-address   inet:ip-address 
+:(host-name)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/server/host-name/ip-host-address   inet:host 
+ +rw (transport)?
+:(tcp)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/transport/tcp/tcp-port?   uint32 
+:(ssh)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/transport/ssh/ssh-port?   uint32 
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/user-name?   string 
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/password?   string 
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/preference-value?   uint8 
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/purge-time?   uint16 
+ +rw (refresh-time)?
+:(disable)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/refresh-time/disable/refresh-time-disable?   boolean 
+:(set-time)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/refresh-time/set-time/refresh-interval?   uint16 
+ +rw (response-time)?
+:(disable)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/response-time/disable/response-time-disable?   boolean 
+:(set-time)
+ +rw /bgp-routing/bgp-router/rpki-config/cache-server-config/response-time/set-time/response-interval?   uint16 
+ +rw /bgp-routing/bgp-router/rpki-config/validation-config
+ +rw /bgp-routing/bgp-router/rpki-config/validation-config/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/rpki-config/validation-config/enable-ibgp?   boolean 
+ +rw (validation-time)?
+:(validation-off)
+ +rw /bgp-routing/bgp-router/rpki-config/validation-config/validation-time/validation-off/disable?   boolean 
+:(set-time)
+ +rw /bgp-routing/bgp-router/rpki-config/validation-config/validation-time/set-time/prefix-validation-time?   uint16 
+ +rw /bgp-routing/bgp-router/rpki-config/bestpath-computation
+ +rw /bgp-routing/bgp-router/rpki-config/bestpath-computation/enable?   boolean 
+ +rw /bgp-routing/bgp-router/rpki-config/bestpath-computation/allow-invalid?   boolean 
+ +rw /bgp-routing/bgp-router/hold-time?   uint16 (Default:180)
+ +rw /bgp-routing/bgp-router/keepalive-time?   uint16 (Default:60)
+ +rw /bgp-routing/bgp-router/af-configuration
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mdt/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/auto-summary?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/aggregate-address?   inet:ip-address 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/distance?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/network?   inet:ip-address 
+ +rw (protocol)?
+:(bgp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/bgp/enable-bgp?   boolean 
+:(ospf)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/ospf/enable-ospf?   boolean 
+:(isis)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/isis/enable-isis?   boolean 
+:(connected)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/connected/enable-connected?   boolean 
+:(eigrp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/eigrp/enable-eigrp?   boolean 
+:(mobile)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/mobile/enable-mobile?   boolean 
+:(static)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/static/enable-static?   boolean 
+:(rip)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/protocol/rip/enable-rip?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/multicast/default-metric?   uint32 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/always-compare-med?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/enforce-first-as?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/fast-external-fallover?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/suppress-inactive?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/asnotation?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/enable-client-to-client-reflection?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/cluster-id?   string 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/confederation
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/confederation/identifier?   string 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/confederation/peers[as-name]*
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/confederation/peers[as-name]/as-name   string 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/consistency-checker
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/consistency-checker/enable?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/consistency-checker/interval?   uint16 
+ +rw (inconsistency-action)?
+:(error-message)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/consistency-checker/inconsistency-action/error-message/generate-error-message-only?   boolean 
+:(autorepair)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/consistency-checker/inconsistency-action/autorepair/perform-autorepair?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/deterministic-med?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/graceful-restart
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/graceful-restart/enable?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/graceful-restart/restart-time?   uint16 (Default:120)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/graceful-restart/stalepath-time?   uint16 (Default:360)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/listener-congfig
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/listener-congfig/enable?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/listener-congfig/limit?   uint16 (Default:100)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/listener-congfig/range?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/listener-congfig/peer-group?   string 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/log-neighbor-changes?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/max-as-limit?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/transport
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/bgp/transport/enable-path-mtu-discovery?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/auto-summary?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/aggregate-address?   inet:ip-address 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/distance?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/network?   inet:ip-address 
+ +rw (protocol)?
+:(bgp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/bgp/enable-bgp?   boolean 
+:(ospf)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/ospf/enable-ospf?   boolean 
+:(isis)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/isis/enable-isis?   boolean 
+:(connected)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/connected/enable-connected?   boolean 
+:(eigrp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/eigrp/enable-eigrp?   boolean 
+:(mobile)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/mobile/enable-mobile?   boolean 
+:(static)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/static/enable-static?   boolean 
+:(rip)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/protocol/rip/enable-rip?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/ibgp-number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/unicast/synchronization?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/rr-group?   string 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/bgp/split-as-override?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv4/mvpn/auto-summary?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/aggregate-address?   inet:ip-address 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/distance?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/network?   inet:ip-address 
+ +rw (protocol)?
+:(bgp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/bgp/enable-bgp?   boolean 
+:(ospf)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/ospf/enable-ospf?   boolean 
+:(isis)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/isis/enable-isis?   boolean 
+:(connected)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/connected/enable-connected?   boolean 
+:(eigrp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/eigrp/enable-eigrp?   boolean 
+:(mobile)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/mobile/enable-mobile?   boolean 
+:(static)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/static/enable-static?   boolean 
+:(rip)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/multicast/protocol/rip/enable-rip?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/aggregate-address?   inet:ip-address 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/distance?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/network?   inet:ip-address 
+ +rw (protocol)?
+:(bgp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/bgp/enable-bgp?   boolean 
+:(ospf)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/ospf/enable-ospf?   boolean 
+:(isis)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/isis/enable-isis?   boolean 
+:(connected)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/connected/enable-connected?   boolean 
+:(eigrp)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/eigrp/enable-eigrp?   boolean 
+:(mobile)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/mobile/enable-mobile?   boolean 
+:(static)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/static/enable-static?   boolean 
+:(rip)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/protocol/rip/enable-rip?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/default-metric?   uint32 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/ibgp-number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/unicast/synchronization?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/rr-group?   string 
+ +rw /bgp-routing/bgp-router/af-configuration/ipv6/mvpn/bgp/split-as-override?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/l2vpn/vpls/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/default-metric?   uint32 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/ibgp-number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/network?   inet:ip-address 
+ +rw (protocol)?
+:(bgp)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/bgp/enable-bgp?   boolean 
+:(ospf)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/ospf/enable-ospf?   boolean 
+:(isis)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/isis/enable-isis?   boolean 
+:(connected)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/connected/enable-connected?   boolean 
+:(eigrp)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/eigrp/enable-eigrp?   boolean 
+:(mobile)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/mobile/enable-mobile?   boolean 
+:(static)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/static/enable-static?   boolean 
+:(rip)
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/protocol/rip/enable-rip?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/nsap/unicast/synchronization?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/rtfilter/unicast/ibgp-number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/bgp/split-as-override?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/unicast/ibgp-number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/bgp/split-as-override?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv4/multicast/ibgp-number-of-path?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/additional-paths?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/advertise-best-external?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/aggregate-timer
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/aggregate-timer/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/aggregate-timer/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath
+ +rw (bestpath-selection)?
+:(as-path)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath/bestpath-selection/as-path/ignore-as-path?   boolean (Default:false)
+:(compare-routerid)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath/bestpath-selection/compare-routerid/ignore-routerid?   boolean (Default:false)
+:(cost-community)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath/bestpath-selection/cost-community/ignore-cost-community?   boolean (Default:false)
+:(igp-metric)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath/bestpath-selection/igp-metric/ignore-igp-metric?   boolean (Default:false)
+:(mad-confed)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath/bestpath-selection/mad-confed/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bestpath/bestpath-selection/mad-confed/missing-as-worst?   boolean (Default:false)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bgp-dampening-params
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bgp-dampening-params/half-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bgp-dampening-params/Reuse-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bgp-dampening-params/supresss-time?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/bgp-dampening-params/max-supress-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/redistribute-internal?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/scan-time?   uint8 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/detection
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/soft-reconfig-backup?   boolean 
+ +rw /bgp-routing/bgp-router/af-configuration/vpnv6/unicast/bgp/split-as-override?   boolean 
+ +rw /bgp-routing/bgp-neighbors
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]*
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/peer-address   inet:ip-address 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/remote-as   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/default-action?   actions-enum 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/neighbor-group-name?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mdt/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/unicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/multicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv4/mvpn/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/unicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/multicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/ipv6/mvpn/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/evpn/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/l2vpn/vpls/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/nsap/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/rtfilter/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv4/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/detection
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/af-specific-config/vpnv6/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/session-open-mode?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/send-buffer-size?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/receive-buffer-size?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/precedence?   enumeration 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/tcp-mss?   uint16 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/ttl-security?   boolean 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/hold-time?   uint16 (Default:180)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/keepalive-time?   uint16 (Default:60)
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/bgp-neighbor-state
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/bgp-neighbor-state/adminStatus?   bgp-peer-admin-status 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/bgp-neighbor-state/in-lastupdatetime?   yang:timestamp 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/bgp-neighbor-statistics
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/bgp-neighbor-statistics/nr-in-updates?   uint32 
+ +rw /bgp-routing/bgp-neighbors/bgp-neighbor[peer-address]/bgp-neighbor-statistics/nr-out-updates?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]*
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/nbr-grp-name   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/remote-as   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/default-action?   actions-enum 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/neighbor-group-name?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mdt/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/unicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/multicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv4/mvpn/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/unicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/multicast/route-server-client-context?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/ipv6/mvpn/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/evpn/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/l2vpn/vpls/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/nsap/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/rtfilter/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv4/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/unicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/active?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/advertisement-interval?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/allowas-in?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/maximum-prefix?   uint32 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/next-hop-self?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/next-hop-unchanged?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/remove-private-as
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/remove-private-as/remove-private-as-number?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/remove-private-as/replace-with-local-as?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/route-reflector-client?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/send-community?   enumeration (Default:standard)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/detection
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/detection/enable?   boolean (Default:true)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/detection/threshold?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/split-update-group?   enumeration 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/soo?   string 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/weight?   uint16 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/prefix-list?   prefix-list-ref 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/soft-reconfiguration?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/propagate-dmzlink-bw?   boolean 
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/default-originate
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/af-specific-config/vpnv6/multicast/default-originate/enable?   boolean (Default:false)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/hold-time?   uint16 (Default:180)
+ +rw /bgp-routing/bgp-neighbor-groups/bgp-neighbor-group[nbr-grp-name]/keepalive-time?   uint16 (Default:60)
+ +rw /bgp-routing/prefix-lists
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]*
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefix-list-name   string 
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]*
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/seq-nr   uint16 
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter
+ +rw (ip-address-group)?
+:(ip-address)
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/ip-address-group/ip-address/ip-address   inet:ip-address 
+:(prefix)
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/ip-address-group/prefix/prefix   inet:ip-prefix 
+:(host)
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/ip-address-group/host/ip-host-address   inet:host 
+:(ip-range)
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/ip-address-group/ip-range/lower?   inet:ip-address 
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/ip-address-group/ip-range/upper?   inet:ip-address 
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/action   actions-enum 
+ +rw /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/statistics
+ +ro /bgp-routing/prefix-lists/prefix-list[prefix-list-name]/prefixes/prefix[seq-nr]/prefix-filter/statistics/prefix-hit-count?   uint32 

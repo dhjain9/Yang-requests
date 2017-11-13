@@ -1,0 +1,1237 @@
+module: bgp
+   +--rw bgp-routing
+      +--rw bgp-router
+      |  +--rw bgp-version?           string
+      |  +--rw local-as-number?       uint32
+      |  +--rw local-as-identifier?   inet:ip-address
+      |  +--rw router-id
+      |  |  +--rw enable?               boolean
+      |  |  +--rw (config-type)?
+      |  |     +--:(static)
+      |  |     |  +--rw ip-address?           boolean
+      |  |     +--:(auto-config)
+      |  |        +--rw enable-auto-config?   boolean
+      |  +--rw rpki-config
+      |  |  +--rw cache-server-config
+      |  |  |  +--rw (server)?
+      |  |  |  |  +--:(ip-address)
+      |  |  |  |  |  +--rw ip-address               inet:ip-address
+      |  |  |  |  +--:(host-name)
+      |  |  |  |     +--rw ip-host-address          inet:host
+      |  |  |  +--rw (transport)?
+      |  |  |  |  +--:(tcp)
+      |  |  |  |  |  +--rw tcp-port?                uint32
+      |  |  |  |  +--:(ssh)
+      |  |  |  |     +--rw ssh-port?                uint32
+      |  |  |  +--rw user-name?               string
+      |  |  |  +--rw password?                string
+      |  |  |  +--rw preference-value?        uint8
+      |  |  |  +--rw purge-time?              uint16
+      |  |  |  +--rw (refresh-time)?
+      |  |  |  |  +--:(disable)
+      |  |  |  |  |  +--rw refresh-time-disable?    boolean
+      |  |  |  |  +--:(set-time)
+      |  |  |  |     +--rw refresh-interval?        uint16
+      |  |  |  +--rw (response-time)?
+      |  |  |     +--:(disable)
+      |  |  |     |  +--rw response-time-disable?   boolean
+      |  |  |     +--:(set-time)
+      |  |  |        +--rw response-interval?       uint16
+      |  |  +--rw validation-config
+      |  |  |  +--rw enable?                   boolean
+      |  |  |  +--rw enable-ibgp?              boolean
+      |  |  |  +--rw (validation-time)?
+      |  |  |     +--:(validation-off)
+      |  |  |     |  +--rw disable?                  boolean
+      |  |  |     +--:(set-time)
+      |  |  |        +--rw prefix-validation-time?   uint16
+      |  |  +--rw bestpath-computation
+      |  |     +--rw enable?          boolean
+      |  |     +--rw allow-invalid?   boolean
+      |  +--rw hold-time?             uint16
+      |  +--rw keepalive-time?        uint16
+      |  +--rw af-configuration
+      |     +--rw ipv4
+      |     |  +--rw mdt
+      |     |  |  +--rw bgp
+      |     |  |     +--rw bgp-dampening-params
+      |     |  |     |  +--rw half-time?          uint8
+      |     |  |     |  +--rw Reuse-time?         uint16
+      |     |  |     |  +--rw supresss-time?      uint16
+      |     |  |     |  +--rw max-supress-time?   uint8
+      |     |  |     +--rw scan-time?              uint8
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?     enumeration
+      |     |  |     +--rw soft-reconfig-backup?   boolean
+      |     |  |     +--rw propagate-dmzlink-bw?   boolean
+      |     |  +--rw multicast
+      |     |  |  +--rw bgp
+      |     |  |  |  +--rw additional-paths?          enumeration
+      |     |  |  |  +--rw advertise-best-external?   boolean
+      |     |  |  |  +--rw aggregate-timer
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw bestpath
+      |     |  |  |  |  +--rw (bestpath-selection)?
+      |     |  |  |  |     +--:(as-path)
+      |     |  |  |  |     |  +--rw ignore-as-path?          boolean
+      |     |  |  |  |     +--:(compare-routerid)
+      |     |  |  |  |     |  +--rw ignore-routerid?         boolean
+      |     |  |  |  |     +--:(cost-community)
+      |     |  |  |  |     |  +--rw ignore-cost-community?   boolean
+      |     |  |  |  |     +--:(igp-metric)
+      |     |  |  |  |     |  +--rw ignore-igp-metric?       boolean
+      |     |  |  |  |     +--:(mad-confed)
+      |     |  |  |  |        +--rw enable?                  boolean
+      |     |  |  |  |        +--rw missing-as-worst?        boolean
+      |     |  |  |  +--rw bgp-dampening-params
+      |     |  |  |  |  +--rw half-time?          uint8
+      |     |  |  |  |  +--rw Reuse-time?         uint16
+      |     |  |  |  |  +--rw supresss-time?      uint16
+      |     |  |  |  |  +--rw max-supress-time?   uint8
+      |     |  |  |  +--rw propagate-dmzlink-bw?      boolean
+      |     |  |  |  +--rw redistribute-internal?     boolean
+      |     |  |  |  +--rw scan-time?                 uint8
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?        enumeration
+      |     |  |  |  +--rw soft-reconfig-backup?      boolean
+      |     |  |  +--rw auto-summary?        boolean
+      |     |  |  +--rw aggregate-address?   inet:ip-address
+      |     |  |  +--rw distance?            uint8
+      |     |  |  +--rw network?             inet:ip-address
+      |     |  |  +--rw (protocol)?
+      |     |  |  |  +--:(bgp)
+      |     |  |  |  |  +--rw enable-bgp?          boolean
+      |     |  |  |  +--:(ospf)
+      |     |  |  |  |  +--rw enable-ospf?         boolean
+      |     |  |  |  +--:(isis)
+      |     |  |  |  |  +--rw enable-isis?         boolean
+      |     |  |  |  +--:(connected)
+      |     |  |  |  |  +--rw enable-connected?    boolean
+      |     |  |  |  +--:(eigrp)
+      |     |  |  |  |  +--rw enable-eigrp?        boolean
+      |     |  |  |  +--:(mobile)
+      |     |  |  |  |  +--rw enable-mobile?       boolean
+      |     |  |  |  +--:(static)
+      |     |  |  |  |  +--rw enable-static?       boolean
+      |     |  |  |  +--:(rip)
+      |     |  |  |     +--rw enable-rip?          boolean
+      |     |  |  +--rw default-metric?      uint32
+      |     |  +--rw unicast
+      |     |  |  +--rw bgp
+      |     |  |  |  +--rw additional-paths?                     enumeration
+      |     |  |  |  +--rw advertise-best-external?              boolean
+      |     |  |  |  +--rw aggregate-timer
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw bestpath
+      |     |  |  |  |  +--rw (bestpath-selection)?
+      |     |  |  |  |     +--:(as-path)
+      |     |  |  |  |     |  +--rw ignore-as-path?          boolean
+      |     |  |  |  |     +--:(compare-routerid)
+      |     |  |  |  |     |  +--rw ignore-routerid?         boolean
+      |     |  |  |  |     +--:(cost-community)
+      |     |  |  |  |     |  +--rw ignore-cost-community?   boolean
+      |     |  |  |  |     +--:(igp-metric)
+      |     |  |  |  |     |  +--rw ignore-igp-metric?       boolean
+      |     |  |  |  |     +--:(mad-confed)
+      |     |  |  |  |        +--rw enable?                  boolean
+      |     |  |  |  |        +--rw missing-as-worst?        boolean
+      |     |  |  |  +--rw bgp-dampening-params
+      |     |  |  |  |  +--rw half-time?          uint8
+      |     |  |  |  |  +--rw Reuse-time?         uint16
+      |     |  |  |  |  +--rw supresss-time?      uint16
+      |     |  |  |  |  +--rw max-supress-time?   uint8
+      |     |  |  |  +--rw propagate-dmzlink-bw?                 boolean
+      |     |  |  |  +--rw redistribute-internal?                boolean
+      |     |  |  |  +--rw scan-time?                            uint8
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?                   enumeration
+      |     |  |  |  +--rw soft-reconfig-backup?                 boolean
+      |     |  |  |  +--rw always-compare-med?                   boolean
+      |     |  |  |  +--rw enforce-first-as?                     boolean
+      |     |  |  |  +--rw fast-external-fallover?               boolean
+      |     |  |  |  +--rw suppress-inactive?                    boolean
+      |     |  |  |  +--rw asnotation?                           enumeration
+      |     |  |  |  +--rw enable-client-to-client-reflection?   boolean
+      |     |  |  |  +--rw cluster-id?                           string
+      |     |  |  |  +--rw confederation
+      |     |  |  |  |  +--rw identifier?   string
+      |     |  |  |  |  +--rw peers [as-name]
+      |     |  |  |  |     +--rw as-name    string
+      |     |  |  |  +--rw consistency-checker
+      |     |  |  |  |  +--rw enable?                        boolean
+      |     |  |  |  |  +--rw interval?                      uint16
+      |     |  |  |  |  +--rw (inconsistency-action)?
+      |     |  |  |  |     +--:(error-message)
+      |     |  |  |  |     |  +--rw generate-error-message-only?   boolean
+      |     |  |  |  |     +--:(autorepair)
+      |     |  |  |  |        +--rw perform-autorepair?            boolean
+      |     |  |  |  +--rw deterministic-med?                    boolean
+      |     |  |  |  +--rw graceful-restart
+      |     |  |  |  |  +--rw enable?           boolean
+      |     |  |  |  |  +--rw restart-time?     uint16
+      |     |  |  |  |  +--rw stalepath-time?   uint16
+      |     |  |  |  +--rw listener-congfig
+      |     |  |  |  |  +--rw enable?       boolean
+      |     |  |  |  |  +--rw limit?        uint16
+      |     |  |  |  |  +--rw range?        uint16
+      |     |  |  |  |  +--rw peer-group?   string
+      |     |  |  |  +--rw log-neighbor-changes?                 boolean
+      |     |  |  |  +--rw max-as-limit?                         uint16
+      |     |  |  |  +--rw transport
+      |     |  |  |     +--rw enable-path-mtu-discovery?   boolean
+      |     |  |  +--rw auto-summary?          boolean
+      |     |  |  +--rw aggregate-address?     inet:ip-address
+      |     |  |  +--rw distance?              uint8
+      |     |  |  +--rw network?               inet:ip-address
+      |     |  |  +--rw (protocol)?
+      |     |  |  |  +--:(bgp)
+      |     |  |  |  |  +--rw enable-bgp?            boolean
+      |     |  |  |  +--:(ospf)
+      |     |  |  |  |  +--rw enable-ospf?           boolean
+      |     |  |  |  +--:(isis)
+      |     |  |  |  |  +--rw enable-isis?           boolean
+      |     |  |  |  +--:(connected)
+      |     |  |  |  |  +--rw enable-connected?      boolean
+      |     |  |  |  +--:(eigrp)
+      |     |  |  |  |  +--rw enable-eigrp?          boolean
+      |     |  |  |  +--:(mobile)
+      |     |  |  |  |  +--rw enable-mobile?         boolean
+      |     |  |  |  +--:(static)
+      |     |  |  |  |  +--rw enable-static?         boolean
+      |     |  |  |  +--:(rip)
+      |     |  |  |     +--rw enable-rip?            boolean
+      |     |  |  +--rw number-of-path?        uint8
+      |     |  |  +--rw ibgp-number-of-path?   uint8
+      |     |  |  +--rw synchronization?       boolean
+      |     |  +--rw mvpn
+      |     |     +--rw bgp
+      |     |     |  +--rw scan-time?              uint8
+      |     |     |  +--rw detection
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw split-update-group?     enumeration
+      |     |     |  +--rw soft-reconfig-backup?   boolean
+      |     |     |  +--rw propagate-dmzlink-bw?   boolean
+      |     |     |  +--rw rr-group?               string
+      |     |     |  +--rw split-as-override?      boolean
+      |     |     +--rw auto-summary?   boolean
+      |     +--rw ipv6
+      |     |  +--rw multicast
+      |     |  |  +--rw bgp
+      |     |  |  |  +--rw additional-paths?          enumeration
+      |     |  |  |  +--rw advertise-best-external?   boolean
+      |     |  |  |  +--rw aggregate-timer
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw bestpath
+      |     |  |  |  |  +--rw (bestpath-selection)?
+      |     |  |  |  |     +--:(as-path)
+      |     |  |  |  |     |  +--rw ignore-as-path?          boolean
+      |     |  |  |  |     +--:(compare-routerid)
+      |     |  |  |  |     |  +--rw ignore-routerid?         boolean
+      |     |  |  |  |     +--:(cost-community)
+      |     |  |  |  |     |  +--rw ignore-cost-community?   boolean
+      |     |  |  |  |     +--:(igp-metric)
+      |     |  |  |  |     |  +--rw ignore-igp-metric?       boolean
+      |     |  |  |  |     +--:(mad-confed)
+      |     |  |  |  |        +--rw enable?                  boolean
+      |     |  |  |  |        +--rw missing-as-worst?        boolean
+      |     |  |  |  +--rw bgp-dampening-params
+      |     |  |  |  |  +--rw half-time?          uint8
+      |     |  |  |  |  +--rw Reuse-time?         uint16
+      |     |  |  |  |  +--rw supresss-time?      uint16
+      |     |  |  |  |  +--rw max-supress-time?   uint8
+      |     |  |  |  +--rw propagate-dmzlink-bw?      boolean
+      |     |  |  |  +--rw redistribute-internal?     boolean
+      |     |  |  |  +--rw scan-time?                 uint8
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?        enumeration
+      |     |  |  |  +--rw soft-reconfig-backup?      boolean
+      |     |  |  +--rw aggregate-address?   inet:ip-address
+      |     |  |  +--rw distance?            uint8
+      |     |  |  +--rw network?             inet:ip-address
+      |     |  |  +--rw (protocol)?
+      |     |  |     +--:(bgp)
+      |     |  |     |  +--rw enable-bgp?          boolean
+      |     |  |     +--:(ospf)
+      |     |  |     |  +--rw enable-ospf?         boolean
+      |     |  |     +--:(isis)
+      |     |  |     |  +--rw enable-isis?         boolean
+      |     |  |     +--:(connected)
+      |     |  |     |  +--rw enable-connected?    boolean
+      |     |  |     +--:(eigrp)
+      |     |  |     |  +--rw enable-eigrp?        boolean
+      |     |  |     +--:(mobile)
+      |     |  |     |  +--rw enable-mobile?       boolean
+      |     |  |     +--:(static)
+      |     |  |     |  +--rw enable-static?       boolean
+      |     |  |     +--:(rip)
+      |     |  |        +--rw enable-rip?          boolean
+      |     |  +--rw unicast
+      |     |  |  +--rw bgp
+      |     |  |  |  +--rw additional-paths?          enumeration
+      |     |  |  |  +--rw advertise-best-external?   boolean
+      |     |  |  |  +--rw aggregate-timer
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw bestpath
+      |     |  |  |  |  +--rw (bestpath-selection)?
+      |     |  |  |  |     +--:(as-path)
+      |     |  |  |  |     |  +--rw ignore-as-path?          boolean
+      |     |  |  |  |     +--:(compare-routerid)
+      |     |  |  |  |     |  +--rw ignore-routerid?         boolean
+      |     |  |  |  |     +--:(cost-community)
+      |     |  |  |  |     |  +--rw ignore-cost-community?   boolean
+      |     |  |  |  |     +--:(igp-metric)
+      |     |  |  |  |     |  +--rw ignore-igp-metric?       boolean
+      |     |  |  |  |     +--:(mad-confed)
+      |     |  |  |  |        +--rw enable?                  boolean
+      |     |  |  |  |        +--rw missing-as-worst?        boolean
+      |     |  |  |  +--rw bgp-dampening-params
+      |     |  |  |  |  +--rw half-time?          uint8
+      |     |  |  |  |  +--rw Reuse-time?         uint16
+      |     |  |  |  |  +--rw supresss-time?      uint16
+      |     |  |  |  |  +--rw max-supress-time?   uint8
+      |     |  |  |  +--rw propagate-dmzlink-bw?      boolean
+      |     |  |  |  +--rw redistribute-internal?     boolean
+      |     |  |  |  +--rw scan-time?                 uint8
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?        enumeration
+      |     |  |  |  +--rw soft-reconfig-backup?      boolean
+      |     |  |  +--rw aggregate-address?     inet:ip-address
+      |     |  |  +--rw distance?              uint8
+      |     |  |  +--rw network?               inet:ip-address
+      |     |  |  +--rw (protocol)?
+      |     |  |  |  +--:(bgp)
+      |     |  |  |  |  +--rw enable-bgp?            boolean
+      |     |  |  |  +--:(ospf)
+      |     |  |  |  |  +--rw enable-ospf?           boolean
+      |     |  |  |  +--:(isis)
+      |     |  |  |  |  +--rw enable-isis?           boolean
+      |     |  |  |  +--:(connected)
+      |     |  |  |  |  +--rw enable-connected?      boolean
+      |     |  |  |  +--:(eigrp)
+      |     |  |  |  |  +--rw enable-eigrp?          boolean
+      |     |  |  |  +--:(mobile)
+      |     |  |  |  |  +--rw enable-mobile?         boolean
+      |     |  |  |  +--:(static)
+      |     |  |  |  |  +--rw enable-static?         boolean
+      |     |  |  |  +--:(rip)
+      |     |  |  |     +--rw enable-rip?            boolean
+      |     |  |  +--rw default-metric?        uint32
+      |     |  |  +--rw number-of-path?        uint8
+      |     |  |  +--rw ibgp-number-of-path?   uint8
+      |     |  |  +--rw synchronization?       boolean
+      |     |  +--rw mvpn
+      |     |     +--rw bgp
+      |     |        +--rw scan-time?              uint8
+      |     |        +--rw detection
+      |     |        |  +--rw enable?      boolean
+      |     |        |  +--rw threshold?   uint16
+      |     |        +--rw split-update-group?     enumeration
+      |     |        +--rw soft-reconfig-backup?   boolean
+      |     |        +--rw propagate-dmzlink-bw?   boolean
+      |     |        +--rw rr-group?               string
+      |     |        +--rw split-as-override?      boolean
+      |     +--rw l2vpn
+      |     |  +--rw vpls
+      |     |     +--rw bgp
+      |     |        +--rw scan-time?            uint8
+      |     |        +--rw detection
+      |     |        |  +--rw enable?      boolean
+      |     |        |  +--rw threshold?   uint16
+      |     |        +--rw split-update-group?   enumeration
+      |     +--rw nsap
+      |     |  +--rw unicast
+      |     |     +--rw bgp
+      |     |     |  +--rw aggregate-timer
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw bgp-dampening-params
+      |     |     |  |  +--rw half-time?          uint8
+      |     |     |  |  +--rw Reuse-time?         uint16
+      |     |     |  |  +--rw supresss-time?      uint16
+      |     |     |  |  +--rw max-supress-time?   uint8
+      |     |     |  +--rw propagate-dmzlink-bw?    boolean
+      |     |     |  +--rw redistribute-internal?   boolean
+      |     |     |  +--rw scan-time?               uint8
+      |     |     |  +--rw detection
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw split-update-group?      enumeration
+      |     |     |  +--rw soft-reconfig-backup?    boolean
+      |     |     +--rw default-metric?        uint32
+      |     |     +--rw number-of-path?        uint8
+      |     |     +--rw ibgp-number-of-path?   uint8
+      |     |     +--rw network?               inet:ip-address
+      |     |     +--rw (protocol)?
+      |     |     |  +--:(bgp)
+      |     |     |  |  +--rw enable-bgp?            boolean
+      |     |     |  +--:(ospf)
+      |     |     |  |  +--rw enable-ospf?           boolean
+      |     |     |  +--:(isis)
+      |     |     |  |  +--rw enable-isis?           boolean
+      |     |     |  +--:(connected)
+      |     |     |  |  +--rw enable-connected?      boolean
+      |     |     |  +--:(eigrp)
+      |     |     |  |  +--rw enable-eigrp?          boolean
+      |     |     |  +--:(mobile)
+      |     |     |  |  +--rw enable-mobile?         boolean
+      |     |     |  +--:(static)
+      |     |     |  |  +--rw enable-static?         boolean
+      |     |     |  +--:(rip)
+      |     |     |     +--rw enable-rip?            boolean
+      |     |     +--rw synchronization?       boolean
+      |     +--rw rtfilter
+      |     |  +--rw unicast
+      |     |     +--rw bgp
+      |     |     |  +--rw detection
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw split-update-group?   enumeration
+      |     |     +--rw number-of-path?        uint8
+      |     |     +--rw ibgp-number-of-path?   uint8
+      |     +--rw vpnv4
+      |     |  +--rw unicast
+      |     |  |  +--rw bgp
+      |     |  |  |  +--rw additional-paths?          enumeration
+      |     |  |  |  +--rw advertise-best-external?   boolean
+      |     |  |  |  +--rw aggregate-timer
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw bestpath
+      |     |  |  |  |  +--rw (bestpath-selection)?
+      |     |  |  |  |     +--:(as-path)
+      |     |  |  |  |     |  +--rw ignore-as-path?          boolean
+      |     |  |  |  |     +--:(compare-routerid)
+      |     |  |  |  |     |  +--rw ignore-routerid?         boolean
+      |     |  |  |  |     +--:(cost-community)
+      |     |  |  |  |     |  +--rw ignore-cost-community?   boolean
+      |     |  |  |  |     +--:(igp-metric)
+      |     |  |  |  |     |  +--rw ignore-igp-metric?       boolean
+      |     |  |  |  |     +--:(mad-confed)
+      |     |  |  |  |        +--rw enable?                  boolean
+      |     |  |  |  |        +--rw missing-as-worst?        boolean
+      |     |  |  |  +--rw bgp-dampening-params
+      |     |  |  |  |  +--rw half-time?          uint8
+      |     |  |  |  |  +--rw Reuse-time?         uint16
+      |     |  |  |  |  +--rw supresss-time?      uint16
+      |     |  |  |  |  +--rw max-supress-time?   uint8
+      |     |  |  |  +--rw propagate-dmzlink-bw?      boolean
+      |     |  |  |  +--rw redistribute-internal?     boolean
+      |     |  |  |  +--rw scan-time?                 uint8
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?        enumeration
+      |     |  |  |  +--rw soft-reconfig-backup?      boolean
+      |     |  |  |  +--rw split-as-override?         boolean
+      |     |  |  +--rw number-of-path?        uint8
+      |     |  |  +--rw ibgp-number-of-path?   uint8
+      |     |  +--rw multicast
+      |     |     +--rw bgp
+      |     |     |  +--rw additional-paths?          enumeration
+      |     |     |  +--rw advertise-best-external?   boolean
+      |     |     |  +--rw aggregate-timer
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw bestpath
+      |     |     |  |  +--rw (bestpath-selection)?
+      |     |     |  |     +--:(as-path)
+      |     |     |  |     |  +--rw ignore-as-path?          boolean
+      |     |     |  |     +--:(compare-routerid)
+      |     |     |  |     |  +--rw ignore-routerid?         boolean
+      |     |     |  |     +--:(cost-community)
+      |     |     |  |     |  +--rw ignore-cost-community?   boolean
+      |     |     |  |     +--:(igp-metric)
+      |     |     |  |     |  +--rw ignore-igp-metric?       boolean
+      |     |     |  |     +--:(mad-confed)
+      |     |     |  |        +--rw enable?                  boolean
+      |     |     |  |        +--rw missing-as-worst?        boolean
+      |     |     |  +--rw bgp-dampening-params
+      |     |     |  |  +--rw half-time?          uint8
+      |     |     |  |  +--rw Reuse-time?         uint16
+      |     |     |  |  +--rw supresss-time?      uint16
+      |     |     |  |  +--rw max-supress-time?   uint8
+      |     |     |  +--rw propagate-dmzlink-bw?      boolean
+      |     |     |  +--rw redistribute-internal?     boolean
+      |     |     |  +--rw scan-time?                 uint8
+      |     |     |  +--rw detection
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw split-update-group?        enumeration
+      |     |     |  +--rw soft-reconfig-backup?      boolean
+      |     |     |  +--rw split-as-override?         boolean
+      |     |     +--rw number-of-path?        uint8
+      |     |     +--rw ibgp-number-of-path?   uint8
+      |     +--rw vpnv6
+      |        +--rw unicast
+      |           +--rw bgp
+      |              +--rw additional-paths?          enumeration
+      |              +--rw advertise-best-external?   boolean
+      |              +--rw aggregate-timer
+      |              |  +--rw enable?      boolean
+      |              |  +--rw threshold?   uint16
+      |              +--rw bestpath
+      |              |  +--rw (bestpath-selection)?
+      |              |     +--:(as-path)
+      |              |     |  +--rw ignore-as-path?          boolean
+      |              |     +--:(compare-routerid)
+      |              |     |  +--rw ignore-routerid?         boolean
+      |              |     +--:(cost-community)
+      |              |     |  +--rw ignore-cost-community?   boolean
+      |              |     +--:(igp-metric)
+      |              |     |  +--rw ignore-igp-metric?       boolean
+      |              |     +--:(mad-confed)
+      |              |        +--rw enable?                  boolean
+      |              |        +--rw missing-as-worst?        boolean
+      |              +--rw bgp-dampening-params
+      |              |  +--rw half-time?          uint8
+      |              |  +--rw Reuse-time?         uint16
+      |              |  +--rw supresss-time?      uint16
+      |              |  +--rw max-supress-time?   uint8
+      |              +--rw propagate-dmzlink-bw?      boolean
+      |              +--rw redistribute-internal?     boolean
+      |              +--rw scan-time?                 uint8
+      |              +--rw detection
+      |              |  +--rw enable?      boolean
+      |              |  +--rw threshold?   uint16
+      |              +--rw split-update-group?        enumeration
+      |              +--rw soft-reconfig-backup?      boolean
+      |              +--rw split-as-override?         boolean
+      +--rw bgp-neighbors
+      |  +--rw bgp-neighbor [peer-address]
+      |     +--rw peer-address               inet:ip-address
+      |     +--rw remote-as                  uint32
+      |     +--rw prefix-list?               prefix-list-ref
+      |     +--rw default-action?            actions-enum
+      |     +--rw neighbor-group-name?       string
+      |     +--rw af-specific-config
+      |     |  +--rw ipv4
+      |     |  |  +--rw mdt
+      |     |  |  |  +--rw active?                   boolean
+      |     |  |  |  +--rw advertisement-interval?   uint32
+      |     |  |  |  +--rw allowas-in?               boolean
+      |     |  |  |  +--rw maximum-prefix?           uint32
+      |     |  |  |  +--rw next-hop-self?            boolean
+      |     |  |  |  +--rw next-hop-unchanged?       boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?   boolean
+      |     |  |  |  +--rw send-community?           enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?       enumeration
+      |     |  |  |  +--rw soo?                      string
+      |     |  |  |  +--rw weight?                   uint16
+      |     |  |  |  +--rw prefix-list?              prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?     boolean
+      |     |  |  +--rw unicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw multicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw mvpn
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  |     +--rw propagate-dmzlink-bw?     boolean
+      |     |  |     +--rw default-originate
+      |     |  |        +--rw enable?   boolean
+      |     |  +--rw ipv6
+      |     |  |  +--rw unicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw multicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw mvpn
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  +--rw l2vpn
+      |     |  |  +--rw evpn
+      |     |  |  |  +--rw active?                   boolean
+      |     |  |  |  +--rw advertisement-interval?   uint32
+      |     |  |  |  +--rw allowas-in?               boolean
+      |     |  |  |  +--rw maximum-prefix?           uint32
+      |     |  |  |  +--rw next-hop-self?            boolean
+      |     |  |  |  +--rw next-hop-unchanged?       boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?   boolean
+      |     |  |  |  +--rw send-community?           enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?       enumeration
+      |     |  |  |  +--rw soo?                      string
+      |     |  |  |  +--rw weight?                   uint16
+      |     |  |  |  +--rw prefix-list?              prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?     boolean
+      |     |  |  +--rw vpls
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  +--rw nsap
+      |     |  |  +--rw unicast
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  +--rw rtfilter
+      |     |  |  +--rw unicast
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  +--rw vpnv4
+      |     |  |  +--rw unicast
+      |     |  |  |  +--rw active?                   boolean
+      |     |  |  |  +--rw advertisement-interval?   uint32
+      |     |  |  |  +--rw allowas-in?               boolean
+      |     |  |  |  +--rw maximum-prefix?           uint32
+      |     |  |  |  +--rw next-hop-self?            boolean
+      |     |  |  |  +--rw next-hop-unchanged?       boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?   boolean
+      |     |  |  |  +--rw send-community?           enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?       enumeration
+      |     |  |  |  +--rw soo?                      string
+      |     |  |  |  +--rw weight?                   uint16
+      |     |  |  |  +--rw prefix-list?              prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?     boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?     boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |     +--rw enable?   boolean
+      |     |  |  +--rw multicast
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  |     +--rw propagate-dmzlink-bw?     boolean
+      |     |  |     +--rw default-originate
+      |     |  |        +--rw enable?   boolean
+      |     |  +--rw vpnv6
+      |     |     +--rw unicast
+      |     |     |  +--rw active?                   boolean
+      |     |     |  +--rw advertisement-interval?   uint32
+      |     |     |  +--rw allowas-in?               boolean
+      |     |     |  +--rw maximum-prefix?           uint32
+      |     |     |  +--rw next-hop-self?            boolean
+      |     |     |  +--rw next-hop-unchanged?       boolean
+      |     |     |  +--rw remove-private-as
+      |     |     |  |  +--rw remove-private-as-number?   boolean
+      |     |     |  |  +--rw replace-with-local-as?      boolean
+      |     |     |  +--rw route-reflector-client?   boolean
+      |     |     |  +--rw send-community?           enumeration
+      |     |     |  +--rw detection
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw split-update-group?       enumeration
+      |     |     |  +--rw soo?                      string
+      |     |     |  +--rw weight?                   uint16
+      |     |     |  +--rw prefix-list?              prefix-list-ref
+      |     |     |  +--rw soft-reconfiguration?     boolean
+      |     |     |  +--rw propagate-dmzlink-bw?     boolean
+      |     |     |  +--rw default-originate
+      |     |     |     +--rw enable?   boolean
+      |     |     +--rw multicast
+      |     |        +--rw active?                   boolean
+      |     |        +--rw advertisement-interval?   uint32
+      |     |        +--rw allowas-in?               boolean
+      |     |        +--rw maximum-prefix?           uint32
+      |     |        +--rw next-hop-self?            boolean
+      |     |        +--rw next-hop-unchanged?       boolean
+      |     |        +--rw remove-private-as
+      |     |        |  +--rw remove-private-as-number?   boolean
+      |     |        |  +--rw replace-with-local-as?      boolean
+      |     |        +--rw route-reflector-client?   boolean
+      |     |        +--rw send-community?           enumeration
+      |     |        +--rw detection
+      |     |        |  +--rw enable?      boolean
+      |     |        |  +--rw threshold?   uint16
+      |     |        +--rw split-update-group?       enumeration
+      |     |        +--rw soo?                      string
+      |     |        +--rw weight?                   uint16
+      |     |        +--rw prefix-list?              prefix-list-ref
+      |     |        +--rw soft-reconfiguration?     boolean
+      |     |        +--rw propagate-dmzlink-bw?     boolean
+      |     |        +--rw default-originate
+      |     |           +--rw enable?   boolean
+      |     +--rw session-open-mode?         enumeration
+      |     +--rw send-buffer-size?          uint32
+      |     +--rw receive-buffer-size?       uint32
+      |     +--rw precedence?                enumeration
+      |     +--rw tcp-mss?                   uint16
+      |     +--rw ttl-security?              boolean
+      |     +--rw hold-time?                 uint16
+      |     +--rw keepalive-time?            uint16
+      |     +--rw bgp-neighbor-state
+      |     |  +--rw adminStatus?         bgp-peer-admin-status
+      |     |  +--rw in-lastupdatetime?   yang:timestamp
+      |     +--rw bgp-neighbor-statistics
+      |        +--rw nr-in-updates?    uint32
+      |        +--rw nr-out-updates?   uint32
+      +--rw bgp-neighbor-groups
+      |  +--rw bgp-neighbor-group [nbr-grp-name]
+      |     +--rw nbr-grp-name           string
+      |     +--rw remote-as              uint32
+      |     +--rw prefix-list?           prefix-list-ref
+      |     +--rw default-action?        actions-enum
+      |     +--rw neighbor-group-name?   string
+      |     +--rw af-specific-config
+      |     |  +--rw ipv4
+      |     |  |  +--rw mdt
+      |     |  |  |  +--rw active?                   boolean
+      |     |  |  |  +--rw advertisement-interval?   uint32
+      |     |  |  |  +--rw allowas-in?               boolean
+      |     |  |  |  +--rw maximum-prefix?           uint32
+      |     |  |  |  +--rw next-hop-self?            boolean
+      |     |  |  |  +--rw next-hop-unchanged?       boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?   boolean
+      |     |  |  |  +--rw send-community?           enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?       enumeration
+      |     |  |  |  +--rw soo?                      string
+      |     |  |  |  +--rw weight?                   uint16
+      |     |  |  |  +--rw prefix-list?              prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?     boolean
+      |     |  |  +--rw unicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw multicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw mvpn
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  |     +--rw propagate-dmzlink-bw?     boolean
+      |     |  |     +--rw default-originate
+      |     |  |        +--rw enable?   boolean
+      |     |  +--rw ipv6
+      |     |  |  +--rw unicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw multicast
+      |     |  |  |  +--rw active?                        boolean
+      |     |  |  |  +--rw advertisement-interval?        uint32
+      |     |  |  |  +--rw allowas-in?                    boolean
+      |     |  |  |  +--rw maximum-prefix?                uint32
+      |     |  |  |  +--rw next-hop-self?                 boolean
+      |     |  |  |  +--rw next-hop-unchanged?            boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?        boolean
+      |     |  |  |  +--rw send-community?                enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?            enumeration
+      |     |  |  |  +--rw soo?                           string
+      |     |  |  |  +--rw weight?                        uint16
+      |     |  |  |  +--rw prefix-list?                   prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?          boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?          boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |  |  +--rw enable?   boolean
+      |     |  |  |  +--rw route-server-client-context?   string
+      |     |  |  +--rw mvpn
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  +--rw l2vpn
+      |     |  |  +--rw evpn
+      |     |  |  |  +--rw active?                   boolean
+      |     |  |  |  +--rw advertisement-interval?   uint32
+      |     |  |  |  +--rw allowas-in?               boolean
+      |     |  |  |  +--rw maximum-prefix?           uint32
+      |     |  |  |  +--rw next-hop-self?            boolean
+      |     |  |  |  +--rw next-hop-unchanged?       boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?   boolean
+      |     |  |  |  +--rw send-community?           enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?       enumeration
+      |     |  |  |  +--rw soo?                      string
+      |     |  |  |  +--rw weight?                   uint16
+      |     |  |  |  +--rw prefix-list?              prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?     boolean
+      |     |  |  +--rw vpls
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  +--rw nsap
+      |     |  |  +--rw unicast
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  +--rw rtfilter
+      |     |  |  +--rw unicast
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  +--rw vpnv4
+      |     |  |  +--rw unicast
+      |     |  |  |  +--rw active?                   boolean
+      |     |  |  |  +--rw advertisement-interval?   uint32
+      |     |  |  |  +--rw allowas-in?               boolean
+      |     |  |  |  +--rw maximum-prefix?           uint32
+      |     |  |  |  +--rw next-hop-self?            boolean
+      |     |  |  |  +--rw next-hop-unchanged?       boolean
+      |     |  |  |  +--rw remove-private-as
+      |     |  |  |  |  +--rw remove-private-as-number?   boolean
+      |     |  |  |  |  +--rw replace-with-local-as?      boolean
+      |     |  |  |  +--rw route-reflector-client?   boolean
+      |     |  |  |  +--rw send-community?           enumeration
+      |     |  |  |  +--rw detection
+      |     |  |  |  |  +--rw enable?      boolean
+      |     |  |  |  |  +--rw threshold?   uint16
+      |     |  |  |  +--rw split-update-group?       enumeration
+      |     |  |  |  +--rw soo?                      string
+      |     |  |  |  +--rw weight?                   uint16
+      |     |  |  |  +--rw prefix-list?              prefix-list-ref
+      |     |  |  |  +--rw soft-reconfiguration?     boolean
+      |     |  |  |  +--rw propagate-dmzlink-bw?     boolean
+      |     |  |  |  +--rw default-originate
+      |     |  |  |     +--rw enable?   boolean
+      |     |  |  +--rw multicast
+      |     |  |     +--rw active?                   boolean
+      |     |  |     +--rw advertisement-interval?   uint32
+      |     |  |     +--rw allowas-in?               boolean
+      |     |  |     +--rw maximum-prefix?           uint32
+      |     |  |     +--rw next-hop-self?            boolean
+      |     |  |     +--rw next-hop-unchanged?       boolean
+      |     |  |     +--rw remove-private-as
+      |     |  |     |  +--rw remove-private-as-number?   boolean
+      |     |  |     |  +--rw replace-with-local-as?      boolean
+      |     |  |     +--rw route-reflector-client?   boolean
+      |     |  |     +--rw send-community?           enumeration
+      |     |  |     +--rw detection
+      |     |  |     |  +--rw enable?      boolean
+      |     |  |     |  +--rw threshold?   uint16
+      |     |  |     +--rw split-update-group?       enumeration
+      |     |  |     +--rw soo?                      string
+      |     |  |     +--rw weight?                   uint16
+      |     |  |     +--rw prefix-list?              prefix-list-ref
+      |     |  |     +--rw soft-reconfiguration?     boolean
+      |     |  |     +--rw propagate-dmzlink-bw?     boolean
+      |     |  |     +--rw default-originate
+      |     |  |        +--rw enable?   boolean
+      |     |  +--rw vpnv6
+      |     |     +--rw unicast
+      |     |     |  +--rw active?                   boolean
+      |     |     |  +--rw advertisement-interval?   uint32
+      |     |     |  +--rw allowas-in?               boolean
+      |     |     |  +--rw maximum-prefix?           uint32
+      |     |     |  +--rw next-hop-self?            boolean
+      |     |     |  +--rw next-hop-unchanged?       boolean
+      |     |     |  +--rw remove-private-as
+      |     |     |  |  +--rw remove-private-as-number?   boolean
+      |     |     |  |  +--rw replace-with-local-as?      boolean
+      |     |     |  +--rw route-reflector-client?   boolean
+      |     |     |  +--rw send-community?           enumeration
+      |     |     |  +--rw detection
+      |     |     |  |  +--rw enable?      boolean
+      |     |     |  |  +--rw threshold?   uint16
+      |     |     |  +--rw split-update-group?       enumeration
+      |     |     |  +--rw soo?                      string
+      |     |     |  +--rw weight?                   uint16
+      |     |     |  +--rw prefix-list?              prefix-list-ref
+      |     |     |  +--rw soft-reconfiguration?     boolean
+      |     |     |  +--rw propagate-dmzlink-bw?     boolean
+      |     |     |  +--rw default-originate
+      |     |     |     +--rw enable?   boolean
+      |     |     +--rw multicast
+      |     |        +--rw active?                   boolean
+      |     |        +--rw advertisement-interval?   uint32
+      |     |        +--rw allowas-in?               boolean
+      |     |        +--rw maximum-prefix?           uint32
+      |     |        +--rw next-hop-self?            boolean
+      |     |        +--rw next-hop-unchanged?       boolean
+      |     |        +--rw remove-private-as
+      |     |        |  +--rw remove-private-as-number?   boolean
+      |     |        |  +--rw replace-with-local-as?      boolean
+      |     |        +--rw route-reflector-client?   boolean
+      |     |        +--rw send-community?           enumeration
+      |     |        +--rw detection
+      |     |        |  +--rw enable?      boolean
+      |     |        |  +--rw threshold?   uint16
+      |     |        +--rw split-update-group?       enumeration
+      |     |        +--rw soo?                      string
+      |     |        +--rw weight?                   uint16
+      |     |        +--rw prefix-list?              prefix-list-ref
+      |     |        +--rw soft-reconfiguration?     boolean
+      |     |        +--rw propagate-dmzlink-bw?     boolean
+      |     |        +--rw default-originate
+      |     |           +--rw enable?   boolean
+      |     +--rw hold-time?             uint16
+      |     +--rw keepalive-time?        uint16
+      +--rw prefix-lists
+         +--rw prefix-list [prefix-list-name]
+            +--rw prefix-list-name    string
+            +--rw prefixes
+               +--rw prefix [seq-nr]
+                  +--rw seq-nr           uint16
+                  +--rw prefix-filter
+                     +--rw (ip-address-group)?
+                     |  +--:(ip-address)
+                     |  |  +--rw ip-address         inet:ip-address
+                     |  +--:(prefix)
+                     |  |  +--rw prefix             inet:ip-prefix
+                     |  +--:(host)
+                     |  |  +--rw ip-host-address    inet:host
+                     |  +--:(ip-range)
+                     |     +--rw lower?             inet:ip-address
+                     |     +--rw upper?             inet:ip-address
+                     +--rw action             actions-enum
+                     +--rw statistics
+                        +--ro prefix-hit-count?   uint32

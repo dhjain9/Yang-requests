@@ -1,0 +1,807 @@
+Session established (Id: 4193235190)
+Proccessing send-file command '/ws/dhjain-sjc/full.txt (response-file:)'
+
+Processing file: /ws/dhjain-sjc/full.txt
+Request - Sun Aug 28 2016 15:38:30
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+</get-config>
+</rpc>
+
+
+Response - Sun Aug 28 2016 15:38:42
+
+#924
+<?xml version="1.0"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  </bgp>
+  <bgp xmlns="http://openconfig.net/yang/bgp">
+   <global>
+    <config>
+     <as>27</as>
+     <router-id>53.53.53.53</router-id>
+    </config>
+    <confederation>
+     <config>
+      <member-as>65515</member-as>
+      <identifier>100</identifier>
+     </config>
+    </confederation>
+    <route-selection-options>
+     <config>
+      <ignore-as-path-length>true</ignore-as-path-length>
+      <always-compare-med>true</always-compare-med>
+      <external-compare-router-id>true</external-compare-router-id>
+     </config>
+    </route-selection-options>
+    <graceful-restart>
+     <config>
+      <restart-time>120</restart-time>
+      <stale-routes-time>100</stale-routes-time>
+      <enabled>true</enabled>
+     </config>
+    </graceful-restart>
+    <afi-safis>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+      <use-multiple-paths>
+       <ebgp>
+        <config>
+         <maximum-paths>16</maximum-paths>
+        </config>
+       </ebgp>
+       <ibgp>
+        <config>
+         <maximum-paths>16</maximum-paths>
+        </config>
+       </ibgp>
+      </use-multiple-paths>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-multicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-multicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+      <use-multiple-paths>
+       <ebgp>
+        <config>
+         <maximum-paths>10</maximum-paths>
+        </config>
+       </ebgp>
+       <ibgp>
+        <config>
+         <maximum-paths>10</maximum-paths>
+        </config>
+       </ibgp>
+      </use-multiple-paths>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+      <use-multiple-paths>
+       <ebgp>
+        <config>
+         <maximum-paths>16</maximum-paths>
+        </config>
+       </ebgp>
+       <ibgp>
+        <config>
+         <maximum-paths>16</maximum-paths>
+        </config>
+       </ibgp>
+      </use-multiple-paths>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-multicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-multicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+      <use-multiple-paths>
+       <ebgp>
+        <config>
+         <maximum-paths>10</maximum-paths>
+        </config>
+       </ebgp>
+       <ibgp>
+        <config>
+         <maximum-paths>10</maximum-paths>
+        </config>
+       </ibgp>
+      </use-multiple-paths>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-unicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-unicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-vpls</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-vpls</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-evpn</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-evpn</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-multicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-multicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+     <afi-safi>
+      <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-multicast</afi-safi-name>
+      <config>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-multicast</afi-safi-name>
+       <enabled>true</enabled>
+      </config>
+     </afi-safi>
+    </afi-safis>
+    <default-route-distance>
+     <config>
+      <external-route-distance>100</external-route-distance>
+      <internal-route-distance>50</internal-route-distance>
+     </config>
+    </default-route-distance>
+   </global>
+   <peer-groups>
+    <peer-group>
+     <peer-group-name>IBGP6</peer-group-name>
+     <config>
+      <peer-group-name>IBGP6</peer-group-name>
+      <peer-as>200</peer-as>
+     </config>
+     <transport>
+      <config>
+       <local-address>Loopback0</local-address>
+      </config>
+     </transport>
+     <graceful-restart>
+      <config>
+       <stale-routes-time>120</stale-routes-time>
+      </config>
+     </graceful-restart>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <ipv6-unicast>
+        <prefix-limit>
+         <config>
+          <max-prefixes>100000</max-prefixes>
+          <shutdown-threshold-pct>80</shutdown-threshold-pct>
+          <restart-timer>0</restart-timer>
+         </config>
+        </prefix-limit>
+       </ipv6-unicast>
+      </afi-safi>
+     </afi-safis>
+    </peer-group>
+    <peer-group>
+     <peer-group-name>EXTERNAL</peer-group-name>
+     <config>
+      <peer-group-name>EXTERNAL</peer-group-name>
+      <peer-as>200</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </peer-group>
+    <peer-group>
+     <peer-group-name>ce-group</peer-group-name>
+     <config>
+      <peer-group-name>ce-group</peer-group-name>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>pass-all</import-policy>
+         <export-policy>pass-all</export-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </peer-group>
+    <peer-group>
+     <peer-group-name>rr-client</peer-group-name>
+     <config>
+      <peer-group-name>rr-client</peer-group-name>
+      <peer-as>100</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </peer-group>
+    <peer-group>
+     <peer-group-name>ivpnv4peer</peer-group-name>
+     <config>
+      <peer-group-name>ivpnv4peer</peer-group-name>
+      <peer-as>100</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </peer-group>
+    <peer-group>
+     <peer-group-name>Test-OC-peer</peer-group-name>
+     <config>
+      <peer-group-name>Test-OC-peer</peer-group-name>
+      <peer-as>200</peer-as>
+      <auth-password>07982c55db2b9985d3391f02e639db9c</auth-password>
+      <description>Test OC peer</description>
+      <send-community>BOTH</send-community>
+     </config>
+     <ebgp-multihop>
+      <config>
+       <enabled>true</enabled>
+       <multihop-ttl>150</multihop-ttl>
+      </config>
+     </ebgp-multihop>
+     <timers>
+      <config>
+       <keepalive-interval>20</keepalive-interval>
+       <hold-time>30</hold-time>
+       <minimum-advertisement-interval>25</minimum-advertisement-interval>
+      </config>
+     </timers>
+     <transport>
+      <config>
+       <tcp-mss>100</tcp-mss>
+       <passive-mode>true</passive-mode>
+      </config>
+     </transport>
+     <route-reflector>
+      <config>
+       <route-reflector-cluster-id>650002</route-reflector-cluster-id>
+       <route-reflector-client>false</route-reflector-client>
+      </config>
+     </route-reflector>
+     <graceful-restart>
+      <config>
+       <restart-time>120</restart-time>
+       <stale-routes-time>100</stale-routes-time>
+       <enabled>true</enabled>
+      </config>
+     </graceful-restart>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <use-multiple-paths>
+        <config>
+         <enabled>true</enabled>
+        </config>
+       </use-multiple-paths>
+       <ipv4-unicast>
+        <prefix-limit>
+         <config>
+          <max-prefixes>1200</max-prefixes>
+          <shutdown-threshold-pct>20</shutdown-threshold-pct>
+          <restart-timer>121</restart-timer>
+         </config>
+        </prefix-limit>
+        <config>
+         <send-default-route>true</send-default-route>
+        </config>
+       </ipv4-unicast>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-vpls</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-vpls</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-evpn</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-evpn</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </peer-group>
+   </peer-groups>
+   <neighbors>
+    <neighbor>
+     <neighbor-address>1.1.1.1</neighbor-address>
+     <config>
+      <neighbor-address>1.1.1.1</neighbor-address>
+      <peer-as>200</peer-as>
+      <peer-group>Test-OC-Peers</peer-group>
+      <auth-password>07982c55db2b9985d3391f02e639db9c</auth-password>
+      <description>Test OC Peers</description>
+      <send-community>BOTH</send-community>
+     </config>
+     <ebgp-multihop>
+      <config>
+       <enabled>true</enabled>
+       <multihop-ttl>64</multihop-ttl>
+      </config>
+     </ebgp-multihop>
+     <timers>
+      <config>
+       <keepalive-interval>45</keepalive-interval>
+       <hold-time>120</hold-time>
+       <minimum-advertisement-interval>35</minimum-advertisement-interval>
+      </config>
+     </timers>
+     <transport>
+      <config>
+       <tcp-mss>120</tcp-mss>
+       <local-address>Loopback0</local-address>
+       <passive-mode>true</passive-mode>
+      </config>
+     </transport>
+     <route-reflector>
+      <config>
+       <route-reflector-cluster-id>100</route-reflector-cluster-id>
+       <route-reflector-client>false</route-reflector-client>
+      </config>
+     </route-reflector>
+     <graceful-restart>
+      <config>
+       <restart-time>120</restart-time>
+       <stale-routes-time>100</stale-routes-time>
+       <enabled>true</enabled>
+      </config>
+     </graceful-restart>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <use-multiple-paths>
+        <config>
+         <enabled>true</enabled>
+        </config>
+       </use-multiple-paths>
+       <apply-policy>
+        <config>
+         <import-policy>PASS-ALL</import-policy>
+         <export-policy>PASS-ALL</export-policy>
+        </config>
+       </apply-policy>
+       <ipv4-unicast>
+        <prefix-limit>
+         <config>
+          <max-prefixes>100000</max-prefixes>
+          <shutdown-threshold-pct>20</shutdown-threshold-pct>
+          <restart-timer>120</restart-timer>
+         </config>
+        </prefix-limit>
+        <config>
+         <send-default-route>true</send-default-route>
+        </config>
+       </ipv4-unicast>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>PASS-ALL</import-policy>
+         <export-policy>PASS-ALL</export-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-vpls</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-vpls</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-evpn</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l2vpn-evpn</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-multicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv6-multicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>3.3.3.3</neighbor-address>
+     <config>
+      <neighbor-address>3.3.3.3</neighbor-address>
+      <peer-as>100</peer-as>
+     </config>
+     <transport>
+      <config>
+       <local-address>Loopback0</local-address>
+      </config>
+     </transport>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>set-peer-address</import-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>set-peer-address</import-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>2001:1::1</neighbor-address>
+     <config>
+      <neighbor-address>2001:1::1</neighbor-address>
+      <peer-as>200</peer-as>
+      <peer-group>Test-OC-Peers</peer-group>
+      <auth-password>07982c55db2b9985d3391f02e639db9c</auth-password>
+      <description>Test OC Peers</description>
+     </config>
+     <ebgp-multihop>
+      <config>
+       <enabled>true</enabled>
+       <multihop-ttl>64</multihop-ttl>
+      </config>
+     </ebgp-multihop>
+     <timers>
+      <config>
+       <keepalive-interval>45</keepalive-interval>
+       <hold-time>120</hold-time>
+       <minimum-advertisement-interval>35</minimum-advertisement-interval>
+      </config>
+     </timers>
+     <transport>
+      <config>
+       <tcp-mss>120</tcp-mss>
+       <local-address>Loopback0</local-address>
+       <passive-mode>true</passive-mode>
+      </config>
+     </transport>
+     <route-reflector>
+      <config>
+       <route-reflector-cluster-id>100</route-reflector-cluster-id>
+      </config>
+     </route-reflector>
+     <graceful-restart>
+      <config>
+       <restart-time>120</restart-time>
+       <stale-routes-time>100</stale-routes-time>
+       <enabled>true</enabled>
+      </config>
+     </graceful-restart>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv6-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>PASS-ALL</import-policy>
+         <export-policy>PASS-ALL</export-policy>
+        </config>
+       </apply-policy>
+       <ipv6-unicast>
+        <prefix-limit>
+         <config>
+          <max-prefixes>100000</max-prefixes>
+          <shutdown-threshold-pct>80</shutdown-threshold-pct>
+          <restart-timer>0</restart-timer>
+         </config>
+        </prefix-limit>
+       </ipv6-unicast>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>10.10.12.2</neighbor-address>
+     <config>
+      <neighbor-address>10.10.12.2</neighbor-address>
+      <peer-as>65515</peer-as>
+     </config>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.3</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.3</neighbor-address>
+      <peer-as>100</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <export-policy>TESTOUT</export-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.4</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.4</neighbor-address>
+      <peer-as>3</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.5</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.5</neighbor-address>
+      <peer-as>3</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.6</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.6</neighbor-address>
+      <peer-as>3</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>TESTIN</import-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.7</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.7</neighbor-address>
+      <peer-as>3</peer-as>
+     </config>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+       <apply-policy>
+        <config>
+         <import-policy>TESTIN</import-policy>
+        </config>
+       </apply-policy>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.31</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.31</neighbor-address>
+      <peer-group>rr-client</peer-group>
+     </config>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.32</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.32</neighbor-address>
+      <peer-group>rr-client</peer-group>
+     </config>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>20.0.101.33</neighbor-address>
+     <config>
+      <neighbor-address>20.0.101.33</neighbor-address>
+      <peer-group>rr-client</peer-group>
+     </config>
+    </neighbor>
+    <neighbor>
+     <neighbor-address>80.80.80.80</neighbor-address>
+     <config>
+      <neighbor-address>80.80.80.80</neighbor-address>
+      <peer-as>100</peer-as>
+     </config>
+     <transport>
+      <config>
+       <local-address>Loopback0</local-address>
+      </config>
+     </transport>
+     <afi-safis>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+      <afi-safi>
+       <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+       <config>
+        <afi-safi-name xmlns:idx="http://openconfig.net/yang/bgp-types">idx:l3vpn-ipv4-unicast</afi-safi-name>
+        <enabled>true</enabled>
+       </config>
+      </afi-safi>
+     </afi-safis>
+    </neighbor>
+   </neighbors>
+  </bgp>

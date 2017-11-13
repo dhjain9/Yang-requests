@@ -1,0 +1,349 @@
+
+etconf> send_request /nobackup/dhjain/xr-dev3/netconf-get-oc-rpl.txt
+
+File specified: /nobackup/dhjain/xr-dev3/netconf-get-oc-rpl.txt
+
+--------------- Sent to NETCONF agent ----------------
+
+#218
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+
+ <get>
+  <filter type = "subtree">
+   <route-policy xmlns="http://openconfig.net/yang/route-policy">
+  </route-policy>
+ </filter>
+ </get>
+
+</rpc>
+##
+
+------------------------------------------------------
+
+----------- Received from NETCONF agent --------------
+
+
+#407
+<?xml version="1.0"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <rpc-error>
+  <error-type>protocol</error-type>
+  <error-tag>unknown-namespace</error-tag>
+  <error-severity>error</error-severity>
+  <error-info>
+   <bad-element>route-policy</bad-element>
+   <bad-namespace>http://openconfig.net/yang/route-policy</bad-namespace>
+  </error-info>
+ </rpc-error>
+</rpc-reply>
+
+##
+------------------------------------------------------
+netconf> send_request /nobackup/dhjain/xr-dev3/netconf-get-oc-rpl.txt
+
+File specified: /nobackup/dhjain/xr-dev3/netconf-get-oc-rpl.txt
+
+--------------- Sent to NETCONF agent ----------------
+
+#224
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+
+ <get>
+  <filter type = "subtree">
+   <routing-policy xmlns="http://openconfig.net/yang/routing-policy">
+  </routing-policy>
+ </filter>
+ </get>
+
+</rpc>
+##
+
+------------------------------------------------------
+
+----------- Received from NETCONF agent --------------
+
+
+#7901
+<?xml version="1.0"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  <routing-policy xmlns="http://openconfig.net/yang/routing-policy">
+   <defined-sets>
+    <tag-sets>
+     <tag-set>
+      <tag-set-name>TEST-TAG-SET</tag-set-name>
+      <tag>
+       <value>1000</value>
+      </tag>
+     </tag-set>
+    </tag-sets>
+    <prefix-sets>
+     <prefix-set>
+      <prefix-set-name>TEST-PFX-SET</prefix-set-name>
+      <prefix>
+       <ip-prefix>1.2.3.4/24</ip-prefix>
+       <masklength-range>16..20</masklength-range>
+      </prefix>
+     </prefix-set>
+    </prefix-sets>
+    <bgp-defined-sets xmlns="http://openconfig.net/yang/bgp-policy">
+     <as-path-sets>
+      <as-path-set>
+       <as-path-set-name>TEST-ASPATH-SET</as-path-set-name>
+       <as-path-set-member>1000*</as-path-set-member>
+      </as-path-set>
+     </as-path-sets>
+     <community-sets>
+      <community-set>
+       <community-set-name>TEST-COMM-SET</community-set-name>
+       <community-member>1234:1239</community-member>
+      </community-set>
+     </community-sets>
+    </bgp-defined-sets>
+   </defined-sets>
+   <policy-definitions>
+    <policy-definition>
+     <name>sid</name>
+    </policy-definition>
+    <policy-definition>
+     <name>PASS</name>
+     <statements>
+      <statement>
+       <name>PASS</name>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>pass</name>
+     <statements>
+      <statement>
+       <name>statement-3157466651</name>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>sid2</name>
+    </policy-definition>
+    <policy-definition>
+     <name>DIRECT</name>
+     <statements>
+      <statement>
+       <name>DIRECT</name>
+       <conditions>
+        <bgp-conditions xmlns="http://openconfig.net/yang/bgp-policy">
+         <next-hop-in>0.0.0.0</next-hop-in>
+         <match-community-set>
+          <community-set>AS15169.CONNECTED</community-set>
+          <match-set-options>ALL</match-set-options>
+         </match-community-set>
+        </bgp-conditions>
+       </conditions>
+       <actions>
+        <accept-route/>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>MMD-IN</name>
+     <statements>
+      <statement>
+       <name>ipv4-management-prefixes</name>
+       <conditions>
+        <match-prefix-set>
+         <prefix-set>MMN_AGG_OR_LONGER</prefix-set>
+         <match-set-options>ANY</match-set-options>
+        </match-prefix-set>
+       </conditions>
+       <actions>
+        <bgp-actions xmlns="http://openconfig.net/yang/bgp-policy">
+         <set-local-pref>10000</set-local-pref>
+         <set-community>
+          <community-set-ref>AS15169.CUST-INT</community-set-ref>
+          <options>ADD</options>
+         </set-community>
+        </bgp-actions>
+        <accept-route/>
+       </actions>
+      </statement>
+      <statement>
+       <name>no-leaks</name>
+       <actions>
+        <reject-route/>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>sr-pol</name>
+    </policy-definition>
+    <policy-definition>
+     <name>static</name>
+     <statements>
+      <statement>
+       <name>static</name>
+       <actions>
+        <bgp-actions xmlns="http://openconfig.net/yang/bgp-policy">
+         <set-community>
+          <community-set-ref>AS15169.STATIC</community-set-ref>
+         </set-community>
+         <set-local-pref>900</set-local-pref>
+         <set-route-origin>IGP</set-route-origin>
+        </bgp-actions>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>DEFAULT</name>
+     <statements>
+      <statement>
+       <name>ipv4-advertise-default</name>
+       <conditions>
+        <match-prefix-set>
+         <prefix-set>DEFAULT_EXACT</prefix-set>
+         <match-set-options>ANY</match-set-options>
+        </match-prefix-set>
+       </conditions>
+       <actions>
+        <accept-route/>
+       </actions>
+      </statement>
+      <statement>
+       <name>default-pass</name>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>LSR-OUT</name>
+     <statements>
+      <statement>
+       <name>advertise-ipv4-default</name>
+       <conditions>
+        <match-prefix-set>
+         <prefix-set>DEFAULT_EXACT</prefix-set>
+         <match-set-options>ANY</match-set-options>
+        </match-prefix-set>
+       </conditions>
+       <actions>
+        <bgp-actions xmlns="http://openconfig.net/yang/bgp-policy">
+         <set-med>0</set-med>
+        </bgp-actions>
+        <accept-route/>
+       </actions>
+      </statement>
+      <statement>
+       <name>no-aggregate-discard</name>
+       <conditions>
+        <bgp-conditions xmlns="http://openconfig.net/yang/bgp-policy">
+         <match-community-set>
+          <community-set>STATIC-AGGREGATES</community-set>
+          <match-set-options>ALL</match-set-options>
+         </match-community-set>
+        </bgp-conditions>
+       </conditions>
+       <actions>
+        <reject-route/>
+       </actions>
+      </statement>
+      <statement>
+       <name>as15169-originated-prefixes</name>
+       <conditions>
+        <bgp-conditions xmlns="http://openconfig.net/yang/bgp-policy">
+         <match-community-set>
+          <community-set>AS15169.DATACENTER</community-set>
+          <match-set-options>ALL</match-set-options>
+         </match-community-set>
+        </bgp-conditions>
+       </conditions>
+       <actions>
+        <accept-route/>
+       </actions>
+      </statement>
+      <statement>
+       <name>no-leaks</name>
+       <actions>
+        <reject-route/>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>MMD-OUT</name>
+     <statements>
+      <statement>
+       <name>ipv4-send-default</name>
+       <conditions>
+        <match-prefix-set>
+         <prefix-set>DEFAULT_EXACT</prefix-set>
+         <match-set-options>ANY</match-set-options>
+        </match-prefix-set>
+       </conditions>
+       <actions>
+        <bgp-actions xmlns="http://openconfig.net/yang/bgp-policy">
+         <set-med>0</set-med>
+        </bgp-actions>
+        <accept-route/>
+       </actions>
+      </statement>
+      <statement>
+       <name>no-leaks</name>
+       <actions>
+        <reject-route/>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>TEST-RPL-6</name>
+     <statements>
+      <statement>
+       <name>statement-1396194492</name>
+       <conditions>
+        <match-tag-set>
+         <tag-set>TEST-TAG-SET</tag-set>
+         <match-set-options>INVERT</match-set-options>
+        </match-tag-set>
+       </conditions>
+       <actions>
+        <bgp-actions xmlns="http://openconfig.net/yang/bgp-policy">
+         <set-community>
+          <community-set-ref>TEST-COMM-SET</community-set-ref>
+         </set-community>
+        </bgp-actions>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+    <policy-definition>
+     <name>TEST-RPL-7</name>
+     <statements>
+      <statement>
+       <name>statement-1396213486</name>
+       <conditions>
+        <bgp-conditions xmlns="http://openconfig.net/yang/bgp-policy">
+         <match-as-path-set>
+          <as-path-set>TEST-ASPATH-SET</as-path-set>
+          <match-set-options>ANY</match-set-options>
+         </match-as-path-set>
+        </bgp-conditions>
+       </conditions>
+       <actions>
+        <bgp-actions xmlns="http://openconfig.net/yang/bgp-policy">
+         <set-community>
+          <communities>1234:1236</communities>
+         </set-community>
+        </bgp-actions>
+       </actions>
+      </statement>
+     </statements>
+    </policy-definition>
+   </policy-definitions>
+  </routing-policy>
+ </data>
+</rpc-reply>
+
+##
+------------------------------------------------------
+netconf>
+

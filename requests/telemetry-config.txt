@@ -1,0 +1,38 @@
+itelemetry model-driven
+ sensor-group bgp
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/neighbors/neighbor
+ !
+ sensor-group oc-int
+  sensor-path openconfig-interfaces:interfaces/interface/state
+ !
+ sensor-group egress-qos-member
+  sensor-path Cisco-IOS-XR-qos-ma-oper:qos/qos-global/vo-q/vo-q-statistics/vo-qinterfaces/vo-qinterface/vo-q-member-interfaces/vo-q-member-interface/vo-qoutput/vo-q-stats
+ !
+ sensor-group egress-qos-prathap
+  sensor-path Cisco-IOS-XR-infra-statsd-oper/infra-statistics
+  sensor-path Cisco-IOS-XR-infra-statsd-oper:infra-statistics/interfaces/interface/latest/generic-counters
+  sensor-path Cisco-IOS-XR-qos-ma-oper:qos/interface-table/interface/member-interfaces/member-interface/input
+  sensor-path Cisco-IOS-XR-qos-ma-oper:qos/interface-table/interface/member-interfaces/member-interface/output
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/neighbors/neighbor
+ !
+ sensor-group qos-output-members
+  sensor-path Cisco-IOS-XR-infra-statsd-oper:infra-statistics/interfaces/interface/latest/generic-counters
+  sensor-path Cisco-IOS-XR-qos-ma-oper:qos/interface-table/interface/member-interfaces/member-interface/input
+  sensor-path Cisco-IOS-XR-qos-ma-oper:qos/interface-table/interface/member-interfaces/member-interface/output
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/neighbors/neighbor
+ !
+ subscription 30s
+  sensor-group-id oc-int sample-interval 30000
+  sensor-group-id qos-output-members sample-interval 30000
+ !
+ subscription bgp
+  sensor-group-id bgp sample-interval 5000
+ !
+ subscription prathap
+  sensor-group-id egress-qos-prathap sample-interval 30000
+ !
+ subscription 30seconds
+  sensor-group-id 30seconds sample-interval 30000
+ !
+!
+

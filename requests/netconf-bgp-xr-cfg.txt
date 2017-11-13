@@ -1,0 +1,138 @@
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:f24c5698-2465-4df1-b65d-9cd3ba48baf3">                                                                                                           
+  <edit-config>                                                                                              
+    <target>                                                                                                 
+      <candidate/>                                                                                            
+    </target>                                                                                                
+    <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">                                               
+      <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">                                       
+        <instance>                                                                                            
+          <instance-name>default</instance-name>                                                             
+          <instance-as>                                                                                      
+            <as>0</as>                                                                                        
+            <four-byte-as>                                                                                   
+              <as>1</as>                                                                                      
+              <bgp-running></bgp-running>                                                                    
+              <default-vrf>                                                                                   
+                <bgp-entity>                                                                                 
+                  <neighbor-groups>                                                                          
+                    <neighbor-group>                                                                         
+                      <neighbor-group-name>neighbor_group2</neighbor-group-name>                             
+                      <create></create>                                                                      
+                      <neighbor-group-afs>                                                                   
+                        <neighbor-group-af>                                                                  
+                          <af-name>ipv6-unicast</af-name>                                                    
+                          <activate></activate>                                                               
+                        </neighbor-group-af>                                                                 
+                        <neighbor-group-af>                                                                   
+                          <af-name>ipv4-unicast</af-name>                                                    
+                          <activate></activate>                                                              
+                        </neighbor-group-af>                                                                 
+                      </neighbor-group-afs>                                                                  
+                      <remote-as>                                                                             
+                        <as-xx>0</as-xx>                                                                     
+                        <as-yy>1</as-yy>                                                                      
+                      </remote-as>                                                                           
+                    </neighbor-group>                                                                        
+                    <neighbor-group>                                                                         
+                      <neighbor-group-name>neighbor_group1</neighbor-group-name>                             
+                      <bfd-multiplier>3</bfd-multiplier>                                                     
+                      <create></create>                                                                      
+                      <neighbor-group-afs>                                                                    
+                        <neighbor-group-af>                                                                  
+                          <af-name>ipv6-unicast</af-name>                                                    
+                          <activate></activate>                                                              
+                        </neighbor-group-af>                                                                 
+                        <neighbor-group-af>                                                                  
+                          <af-name>ipv4-unicast</af-name>                                                    
+                          <activate></activate>                                                               
+                        </neighbor-group-af>                                                                 
+                      </neighbor-group-afs>                                                                  
+                      <remote-as>                                                                            
+                        <as-xx>0</as-xx>                                                                     
+                        <as-yy>1</as-yy>                                                                     
+                      </remote-as>                                                                            
+                    </neighbor-group>                                                                        
+                  </neighbor-groups>                                                                          
+                  <neighbors>                                                                                
+                    <neighbor>                                                                               
+                      <neighbor-address>5.5.5.5</neighbor-address>                                           
+                      <neighbor-group-add-member>neighbor_group2</neighbor-group-add-member>                 
+                    </neighbor>                                                                               
+                    <neighbor>                                                                               
+                      <neighbor-address>2.2.2.2</neighbor-address>                                            
+                      <bfd-multiplier>3</bfd-multiplier>                                                     
+                      <neighbor-afs>                                                                         
+                        <neighbor-af>                                                                        
+                          <af-name>ipv6-unicast</af-name>                                                    
+                          <activate></activate>                                                               
+                        </neighbor-af>                                                                       
+                        <neighbor-af>                                                                         
+                          <af-name>ipv4-unicast</af-name>                                                    
+                          <activate></activate>                                                              
+                        </neighbor-af>                                                                       
+                      </neighbor-afs>                                                                        
+                      <remote-as>                                                                             
+                        <as-xx>0</as-xx>                                                                     
+                        <as-yy>1</as-yy>                                                                      
+                      </remote-as>                                                                           
+                    </neighbor>                                                                              
+                    <neighbor>                                                                               
+                      <neighbor-address>3.3.3.3</neighbor-address>                                           
+                      <bfd-multiplier>3</bfd-multiplier>                                                     
+                      <neighbor-afs>                                                                          
+                        <neighbor-af>                                                                        
+                          <af-name>ipv6-unicast</af-name>                                                     
+                          <activate></activate>                                                              
+                        </neighbor-af>                                                                       
+                        <neighbor-af>                                                                        
+                          <af-name>ipv4-unicast</af-name>                                                    
+                          <activate></activate>                                                               
+                        </neighbor-af>                                                                       
+                      </neighbor-afs>                                                                         
+                      <remote-as>                                                                            
+                        <as-xx>0</as-xx>                                                                     
+                        <as-yy>1</as-yy>                                                                     
+                      </remote-as>                                                                           
+                    </neighbor>                                                                               
+                    <neighbor>                                                                               
+                      <neighbor-address>4.4.4.4</neighbor-address>                                            
+                      <neighbor-group-add-member>neighbor_group1</neighbor-group-add-member>                 
+                    </neighbor>                                                                              
+                  </neighbors>
+                </bgp-entity>
+                <global>
+                  <global-afs>
+                    <global-af>
+                      <af-name>ipv6-unicast</af-name>
+                      <enable></enable>
+                    </global-af>
+                    <global-af>
+                      <af-name>ipv4-unicast</af-name>
+                      <enable></enable>
+                    </global-af>
+                  </global-afs>
+                </global>
+              </default-vrf>
+            </four-byte-as>
+          </instance-as>
+        </instance>
+      </bgp>
+    </config>
+  </edit-config>
+</rpc>
+ 
+ 
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:f24c5698-2465-4df1-b65d-9cd3ba48baf3">
+  <ok/>
+</rpc-reply>
+ 
+ 
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <commit/>
+</rpc>
+ 
+ 
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:f24c5698-2465-4df1-b65d-9cd3ba48baf3">
+  <ok/>
+</rpc-reply>

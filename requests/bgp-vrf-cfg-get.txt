@@ -1,0 +1,243 @@
+P/0/0/CPU0:PE1#conf
+Fri May 19 14:28:26.758 PDT
+RP/0/0/CPU0:PE1(config)#router bgp 1
+RP/0/0/CPU0:PE1(config-bgp)#vrf 1
+RP/0/0/CPU0:PE1(config-bgp-vrf)#rd 100:1
+RP/0/0/CPU0:PE1(config-bgp-vrf)#commit
+Fri May 19 14:28:35.578 PDT
+RP/0/0/CPU0:PE1(config-bgp-vrf)#exit
+RP/0/0/CPU0:PE1(config-bgp)#vrf 2
+RP/0/0/CPU0:PE1(config-bgp-vrf)#rd ?
+  <1-65535>.<0-65535>:<0-65535>  4-byte AS number in asdot (X.Y) format
+  <1-65535>:                     2-byte AS number
+  <65536-4294967295>:            4-byte AS number in asplain format
+  A.B.C.D:                       IPv4 address
+  auto                           Automatic route distinguisher
+RP/0/0/CPU0:PE1(config-bgp-vrf)#rd 66666:1
+RP/0/0/CPU0:PE1(config-bgp-vrf)#comit
+                                   ^
+% Invalid input detected at '^' marker.
+RP/0/0/CPU0:PE1(config-bgp-vrf)#commit
+Fri May 19 14:28:52.931 PDT
+RP/0/0/CPU0:PE1(config-bgp-vrf)#exit
+RP/0/0/CPU0:PE1(config-bgp)#vrf 3
+RP/0/0/CPU0:PE1(config-bgp-vrf)#rd 1.1.1.1:1
+RP/0/0/CPU0:PE1(config-bgp-vrf)#commit
+Fri May 19 14:29:03.497 PDT
+System configuration operation in progress: Commit database consolidation.
+Please wait or use control-c to cancel this operation..
+System configuration operation complete, commit proceeding.
+RP/0/0/CPU0:PE1(config-bgp-vrf)#exit
+RP/0/0/CPU0:PE1(config-bgp)#vrf 4
+RP/0/0/CPU0:PE1(config-bgp-vrf)#rd 1.1:1
+RP/0/0/CPU0:PE1(config-bgp-vrf)#commit
+Fri May 19 14:29:18.729 PDT
+RP/0/0/CPU0:PE1(config-bgp-vrf)#exit
+RP/0/0/CPU0:PE1(config-bgp)#vrf 5
+RP/0/0/CPU0:PE1(config-bgp-vrf)#rd auto
+RP/0/0/CPU0:PE1(config-bgp-vrf)#commit
+Fri May 19 14:29:27.609 PDT
+RP/0/0/CPU0:PE1(config-bgp-vrf)#end
+RP/0/0/CPU0:PE1#exit
+Terminated
+enxr-PE1.0/0/CPU0/ $ /router/bin/python /nobackup/dhjain/xr-dev-oc/manageability/netconf/scripts/netconf_client.py
+Type 'help' or '?' to see the available commands
+netconf> send_request /nobackup/dhjain/xr-dev-oc/netconf-get-cfg.txt
+
+File specified: /nobackup/dhjain/xr-dev-oc/netconf-get-cfg.txt
+
+--------------- Sent to NETCONF agent ----------------
+
+#264
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+
+ <get-config>
+  <source>
+    <running/>
+  </source>
+  <filter type = "subtree">
+   <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+   </bgp>
+  </filter>
+ </get-config>
+
+</rpc>
+##
+
+------------------------------------------------------
+
+----------- Received from NETCONF agent --------------
+
+#3381
+<?xml version="1.0"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+   <instance>
+    <instance-name>default</instance-name>
+    <instance-as>
+     <as>0</as>
+     <four-byte-as>
+      <as>1</as>
+      <bgp-running></bgp-running>
+      <default-vrf>
+       <global>
+        <router-id>10.10.0.1</router-id>
+        <graceful-restart></graceful-restart>
+        <global-afs>
+         <global-af>
+          <af-name>ipv4-unicast</af-name>
+          <enable></enable>
+          <distance>
+           <external-routes>100</external-routes>
+           <internal-routes>100</internal-routes>
+           <local-routes>200</local-routes>
+          </distance>
+         </global-af>
+        </global-afs>
+       </global>
+       <bgp-entity>
+        <neighbor-groups>
+         <neighbor-group>
+          <neighbor-group-name>nbr-1</neighbor-group-name>
+          <create></create>
+          <neighbor-group-afs>
+           <neighbor-group-af>
+            <af-name>ipv4-unicast</af-name>
+            <activate></activate>
+            <route-policy-in>pass</route-policy-in>
+            <route-policy-out>pass</route-policy-out>
+           </neighbor-group-af>
+          </neighbor-group-afs>
+         </neighbor-group>
+        </neighbor-groups>
+        <neighbors>
+         <neighbor>
+          <neighbor-address>10.10.0.1</neighbor-address>
+          <remote-as>
+           <as-xx>0</as-xx>
+           <as-yy>10</as-yy>
+          </remote-as>
+          <neighbor-group-add-member>nbr-1</neighbor-group-add-member>
+          <neighbor-graceful-restart-time>1</neighbor-graceful-restart-time>
+          <neighbor-graceful-restart>false</neighbor-graceful-restart>
+         </neighbor>
+        </neighbors>
+       </bgp-entity>
+      </default-vrf>
+      <vrfs>
+       <vrf>
+        <vrf-name>1</vrf-name>
+        <vrf-global>
+         <exists></exists>
+         <route-distinguisher>
+          <type>as</type>
+          <as-xx>0</as-xx>
+          <as>100</as>
+          <as-index>1</as-index>
+         </route-distinguisher>
+        </vrf-global>
+       </vrf>
+       <vrf>
+        <vrf-name>2</vrf-name>
+        <vrf-global>
+         <exists></exists>
+         <route-distinguisher>
+          <type>four-byte-as</type>
+          <as-xx>0</as-xx>
+          <as>66666</as>
+          <as-index>1</as-index>
+         </route-distinguisher>
+        </vrf-global>
+       </vrf>
+       <vrf>
+        <vrf-name>3</vrf-name>
+        <vrf-global>
+         <exists></exists>
+         <route-distinguisher>
+          <type>ipv4-address</type>
+          <address>1.1.1.1</address>
+          <address-index>1</address-index>
+         </route-distinguisher>
+        </vrf-global>
+       </vrf>
+       <vrf>
+        <vrf-name>4</vrf-name>
+        <vrf-global>
+         <exists></exists>
+         <route-distinguisher>
+          <type>four-byte-as</type>
+          <as-xx>1</as-xx>
+          <as>1</as>
+          <as-index>1</as-index>
+         </route-distinguisher>
+        </vrf-global>
+       </vrf>
+       <vrf>
+        <vrf-name>5</vrf-name>
+        <vrf-global>
+         <exists></exists>
+         <route-distinguisher>
+          <type>auto</type>
+         </route-distinguisher>
+        </vrf-global>
+       </vrf>
+      </vrfs>
+     </four-byte-as>
+    </instance-as>
+   </instance>
+  </bgp>
+
+#22
+ </data>
+</rpc-reply>
+
+##
+------------------------------------------------------
+netconf> exit
+Exiting...
+
+The operation log is saved in '/disk0:/netconf_client_log.txt'
+
+enxr-PE1.0/0/CPU0/ $ exec
+
+
+RP/0/0/CPU0:PE1#show run router bgp
+Fri May 19 14:30:35.897 PDT
+router bgp 1
+ bgp router-id 10.10.0.1
+ bgp graceful-restart
+ address-family ipv4 unicast
+  distance bgp 100 100 200
+ !
+ neighbor-group nbr-1
+  address-family ipv4 unicast
+   route-policy pass in
+   route-policy pass out
+  !
+ !
+ neighbor 10.10.0.1
+  remote-as 10
+  use neighbor-group nbr-1
+  graceful-restart restart-time 1
+  graceful-restart
+ !
+ vrf 1
+  rd 100:1
+ !
+ vrf 2
+  rd 66666:1
+ !
+ vrf 3
+  rd 1.1.1.1:1
+ !
+ vrf 4
+  rd 1.1:1
+ !
+ vrf 5
+  rd auto
+ !
+!
+
+RP/0/0/CPU0:PE1#
+

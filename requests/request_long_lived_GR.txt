@@ -1,0 +1,53 @@
+#1318
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
+<edit-config>
+<target><candidate/></target>
+<config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+<bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+<instance>
+<instance-name>default</instance-name>
+<instance-as>
+<as>0</as>
+<four-byte-as>
+<default-vrf>
+<bgp-entity>
+<neighbors>
+<neighbor>
+<neighbor-afs>
+<neighbor-af>
+<af-name>ipv4-unicast</af-name>
+<neighbor-af-long-lived-graceful-restart-capable>true</neighbor-af-long-lived-graceful-restart-capable>
+<activate/>
+<neighbor-af-long-lived-graceful-restart-stale-time>
+<stale-time-send>16777215</stale-time-send>
+<stale-time-accept>16777215</stale-time-accept>
+</neighbor-af-long-lived-graceful-restart-stale-time>
+</neighbor-af>
+</neighbor-afs>
+<neighbor-address>12.12.12.12</neighbor-address>
+<remote-as>
+<as-yy>200</as-yy>
+</remote-as>
+</neighbor>
+</neighbors>
+</bgp-entity>
+</default-vrf>
+<bgp-running/>
+<as>1</as>
+</four-byte-as>
+</instance-as>
+</instance>
+</bgp>
+</config>
+</edit-config>
+</rpc>
+
+##
+
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<commit/>
+</rpc>
+##

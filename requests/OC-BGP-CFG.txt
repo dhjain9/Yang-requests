@@ -1,0 +1,200 @@
+
+config:
+ 
+    'OpenConfig_BGP':
+    """
+router bgp 100
+bgp confederation peers
+  65001
+!
+bgp confederation identifier 101
+bgp router-id 53.53.53.53
+bgp bestpath as-path ignore
+bgp graceful-restart restart-time 120
+bgp graceful-restart stalepath-time 100
+bgp graceful-restart
+bgp bestpath med always
+bgp bestpath compare-routerid
+address-family ipv4 unicast
+  distance bgp 191 11 200
+  maximum-paths ebgp 10
+  maximum-paths ibgp 10
+!
+address-family ipv4 multicast
+  distance bgp 191 11 200
+  maximum-paths ebgp 10
+  maximum-paths ibgp 10
+!
+address-family vpnv4 unicast
+!
+address-family ipv6 unicast
+  distance bgp 191 11 200
+  maximum-paths ebgp 10
+  maximum-paths ibgp 10
+!
+address-family ipv6 multicast
+  distance bgp 191 11 200
+  maximum-paths ebgp 10
+  maximum-paths ibgp 10
+!
+address-family vpnv6 unicast
+!
+address-family l2vpn vpls-vpws
+!
+address-family l2vpn evpn
+!
+address-family vpnv4 multicast
+!
+address-family vpnv6 multicast
+!
+neighbor-group Test-OC-peer
+  remote-as 200
+  ebgp-multihop 150
+  timers 20 30
+  advertisement-interval 25
+  tcp mss 100
+  local-as 300
+  password encrypted 07982c55db2b9985d3391f02e639db9c
+  cluster-id 650002
+  description Test OC peer
+  graceful-restart restart-time 120
+  local address 2.2.2.2
+  graceful-restart stalepath-time 100
+  graceful-restart
+  session-open-mode passive-only
+  address-family ipv4 unicast
+   send-community-ebgp
+   multipath
+   route-policy PASS-ALL in
+   route-reflector-client inheritance-disable
+   maximum-prefix 1200 20 restart 121
+   route-policy PASS-ALL out
+   send-extended-community-ebgp
+   default-originate
+   remove-private-AS entire-aspath
+  !
+  address-family ipv4 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv4 unicast
+   route-reflector-client inheritance-disable
+   maximum-prefix 12334 20 restart 120
+   remove-private-AS entire-aspath
+  !
+  address-family ipv6 unicast
+   send-community-ebgp
+   multipath
+   route-reflector-client inheritance-disable
+   maximum-prefix 11111 11 restart 111
+   send-extended-community-ebgp
+   default-originate
+   remove-private-AS entire-aspath
+  !
+  address-family ipv6 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv6 unicast
+   route-reflector-client inheritance-disable
+   remove-private-AS entire-aspath
+  !
+  address-family l2vpn vpls-vpws
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family l2vpn evpn
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv4 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv6 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+!
+neighbor 46.46.46.46
+  remote-as 200
+  use neighbor-group Test-OC-Peers
+  ebgp-multihop 64
+  tcp mss 100
+  local-as 300
+  password encrypted 07982c55db2b9985d3391f02e639db9c
+  cluster-id 300
+  description Test OC Peers
+  graceful-restart restart-time 120
+  local address 1.1.1.1
+  graceful-restart stalepath-time 100
+  graceful-restart
+  session-open-mode passive-only
+  address-family ipv4 unicast
+   send-community-ebgp
+   multipath
+   route-reflector-client inheritance-disable
+   maximum-prefix 100000 20 restart 120
+   send-extended-community-ebgp
+   default-originate
+   remove-private-AS entire-aspath
+  !
+  address-family ipv4 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv4 unicast
+   route-reflector-client inheritance-disable
+   maximum-prefix 1010101 10 restart 101
+   remove-private-AS entire-aspath
+  !
+  address-family ipv6 unicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv6 unicast
+   route-reflector-client inheritance-disable
+   remove-private-AS entire-aspath
+  !
+  address-family l2vpn vpls-vpws
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family l2vpn evpn
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv4 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+  !
+  address-family vpnv6 multicast
+   send-community-ebgp
+   route-reflector-client inheritance-disable
+   send-extended-community-ebgp
+   remove-private-AS entire-aspath
+ 
+    """,
+ 

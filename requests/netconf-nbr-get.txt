@@ -1,0 +1,25 @@
+
+<get>
+ <filter type="subtree">
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+   <instances>
+    <instance>
+     <instance-name>default</instance-name>
+     <instance-active>
+      <default-vrf>
+       <neighbors>
+        <neighbor>
+         <neighbor-address>30.10.0.1</neighbor-address>
+        </neighbor>
+        <neighbor>
+         <neighbor-address>50.10.0.1</neighbor-address>
+        </neighbor>
+       </neighbors>
+      </default-vrf>
+     </instance-active>
+    </instance>
+   </instances>
+  </bgp>
+ </filter>
+</get>
+

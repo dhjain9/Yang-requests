@@ -1,0 +1,77 @@
+==========================
+OPEN CONFIG sample requests
+===========================
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" >
+<edit-config>
+<target>
+<candidate />
+</target>
+<config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0" >
+<bgp xmlns="http://openconfig.net/yang/bgp" >
+<global>
+<confederation><config>
+<identifier>300</identifier></config>
+</confederation></global>
+</bgp>
+</config>
+</edit-config>
+</rpc>
+##
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<commit/>
+</rpc>
+##
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <get-config>
+        <source>
+            <running/>
+        </source>
+    <filter type = "subtree">
+    <bgp xmlns="http://openconfig.net/yang/bgp">
+    <global />
+    </bgp>
+    </filter>
+    </get-config>
+</rpc>
+##
+
+================
+XR BGP namesapce.
+=================
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <get>
+      <filter type="subtree">
+        <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+        </bgp>
+      </filter>
+     </get>
+</rpc>
+##
+
+--------
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <get-config>
+        <source>
+            <running/>
+        </source>
+    <filter type = "subtree">
+    <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+    </bgp>
+    </filter>
+    </get-config>
+</rpc>
+##
+
+
+
+
+
+

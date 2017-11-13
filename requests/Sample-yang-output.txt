@@ -1,0 +1,739 @@
+
+dhjain@sjc-ads-4502 dhjain]$
+[dhjain@sjc-ads-4502 dhjain]$ /users/nnakamot/bin/netconf_client.py tcp localhost 5555
+Connected to NETCONF agent. Waiting for <hello> message...
+
+------------ Received from NETCONF agent --------------
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <capabilities>
+  <capability>urn:ietf:params:netconf:base:1.1</capability>
+  <capability>urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring</capability>
+  <capability>urn:ietf:params:netconf:capability:candidate:1.0</capability>
+  <capability>urn:ietf:params:netconf:capability:rollback-on-error:1.0</capability>
+  <capability>urn:ietf:params:netconf:capability:validate:1.1</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-oper-datatypes?module=Cisco-IOS-XR-mpls-ldp-oper-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-iarm-datatypes?module=Cisco-IOS-XR-ip-iarm-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg?module=Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-ceredundancymib-cfg?module=Cisco-IOS-XR-infra-ceredundancymib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-lsd-cfg?module=Cisco-IOS-XR-mpls-lsd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-cfg?module=Cisco-IOS-XR-aaa-locald-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-management-cfg?module=Cisco-IOS-XR-tty-management-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-datatypes?module=Cisco-IOS-XR-ipv4-bgp-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ma-cfg?module=Cisco-IOS-XR-ipv4-ma-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ma-oper?module=Cisco-IOS-XR-ipv4-ma-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ma-cfg?module=Cisco-IOS-XR-ipv6-ma-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-clns-isis-cfg?module=Cisco-IOS-XR-clns-isis-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ma-subscriber-cfg?module=Cisco-IOS-XR-ipv4-ma-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg?module=Cisco-IOS-XR-ipv4-io-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-shellutil-oper?module=Cisco-IOS-XR-shellutil-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-protocol-radius-cfg?module=Cisco-IOS-XR-aaa-protocol-radius-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-server-oper?module=Cisco-IOS-XR-tty-server-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-entstatemib-cfg?module=Cisco-IOS-XR-snmp-entstatemib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-oper?module=Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-oper&amp;revision=2015-01-07</capability>
+  <capability>urn:ietf:params:xml:ns:yang:ietf-yang-types?module=ietf-yang-types&amp;revision=2013-07-15</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-acl-datatypes?module=Cisco-IOS-XR-ipv6-acl-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-oper?module=Cisco-IOS-XR-mpls-ldp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-acl-datatypes?module=Cisco-IOS-XR-ipv4-acl-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg?module=Cisco-IOS-XR-ipv4-bgp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ha-eem-cfg?module=Cisco-IOS-XR-ha-eem-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2-eth-infra-datatypes?module=Cisco-IOS-XR-l2-eth-infra-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-policy-repository-oper?module=Cisco-IOS-XR-policy-repository-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-alarm-logger-datatypes?module=Cisco-IOS-XR-infra-alarm-logger-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-lsd-oper?module=Cisco-IOS-XR-mpls-lsd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-domain-cfg?module=Cisco-IOS-XR-ip-domain-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-parser-cfg?module=Cisco-IOS-XR-parser-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-statsd-oper?module=Cisco-IOS-XR-infra-statsd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ma-subscriber-cfg?module=Cisco-IOS-XR-ipv6-ma-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/cisco-xr-types?module=Cisco-IOS-XR-types&amp;revision=2015-01-19</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ma-oper?module=Cisco-IOS-XR-ipv6-ma-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-clns-isis-oper?module=Cisco-IOS-XR-clns-isis-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2vpn-cfg?module=Cisco-IOS-XR-l2vpn-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-man-xml-ttyagent-oper?module=Cisco-IOS-XR-man-xml-ttyagent-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-nd-cfg?module=Cisco-IOS-XR-ipv6-nd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-man-netconf-cfg?module=Cisco-IOS-XR-man-netconf-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-sam-cfg?module=Cisco-IOS-XR-crypto-sam-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-ifmib-cfg?module=Cisco-IOS-XR-snmp-ifmib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-new-dhcpv6d-cfg?module=Cisco-IOS-XR-ipv6-new-dhcpv6d-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-bundlemgr-cfg?module=Cisco-IOS-XR-bundlemgr-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-te-datatypes?module=Cisco-IOS-XR-mpls-te-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-keychain-cfg?module=Cisco-IOS-XR-lib-keychain-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2-eth-infra-cfg?module=Cisco-IOS-XR-l2-eth-infra-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-subscriber-cfg?module=Cisco-IOS-XR-infra-rsi-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-bfd-oper?module=Cisco-IOS-XR-ip-bfd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-shellutil-cfg?module=Cisco-IOS-XR-shellutil-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-bfd-cfg?module=Cisco-IOS-XR-ip-bfd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-frucontrolmib-cfg?module=Cisco-IOS-XR-snmp-frucontrolmib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-cfg?module=Cisco-IOS-XR-infra-rsi-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-ifmib-oper?module=Cisco-IOS-XR-snmp-ifmib-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-nd-subscriber-cfg?module=Cisco-IOS-XR-ipv6-nd-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper?module=Cisco-IOS-XR-ipv4-bgp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-sam-oper?module=Cisco-IOS-XR-crypto-sam-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ospfv3-oper?module=Cisco-IOS-XR-ipv6-ospfv3-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-qos-ma-oper?module=Cisco-IOS-XR-qos-ma-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-acl-oper?module=Cisco-IOS-XR-ipv6-acl-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-oper?module=Cisco-IOS-XR-ifmgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-rgmgr-cfg?module=Cisco-IOS-XR-rgmgr-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-statsd-cfg?module=Cisco-IOS-XR-infra-statsd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-static-cfg?module=Cisco-IOS-XR-ip-static-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-nd-oper?module=Cisco-IOS-XR-ipv6-nd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-oper?module=Cisco-IOS-XR-ipv4-io-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg?module=Cisco-IOS-XR-infra-infra-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-entitymib-cfg?module=Cisco-IOS-XR-snmp-entitymib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-man-xml-ttyagent-cfg?module=Cisco-IOS-XR-man-xml-ttyagent-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-cfg?module=Cisco-IOS-XR-mpls-ldp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-vty-cfg?module=Cisco-IOS-XR-tty-vty-cfg&amp;revision=2015-01-07</capability>
+  <capability>urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&amp;revision=2013-07-15</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2vpn-oper?module=Cisco-IOS-XR-l2vpn-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-clns-isis-datatypes?module=Cisco-IOS-XR-clns-isis-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-keychain-oper?module=Cisco-IOS-XR-lib-keychain-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-cfg-datatypes?module=Cisco-IOS-XR-mpls-ldp-cfg-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-qos-ma-cfg?module=Cisco-IOS-XR-qos-ma-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-io-oper?module=Cisco-IOS-XR-ipv6-io-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-management-datatypes?module=Cisco-IOS-XR-tty-management-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-config-mibs-cfg?module=Cisco-IOS-XR-config-mibs-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-rgmgr-oper?module=Cisco-IOS-XR-rgmgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-drivers-media-eth-oper?module=Cisco-IOS-XR-drivers-media-eth-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-ssh-cfg?module=Cisco-IOS-XR-crypto-ssh-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-cdp-oper?module=Cisco-IOS-XR-cdp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-plat-chas-invmgr-oper?module=Cisco-IOS-XR-plat-chas-invmgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-agent-cfg?module=Cisco-IOS-XR-snmp-agent-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-domain-oper?module=Cisco-IOS-XR-ip-domain-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2-eth-infra-oper?module=Cisco-IOS-XR-l2-eth-infra-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-oper?module=Cisco-IOS-XR-aaa-locald-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-new-dhcpv6d-oper?module=Cisco-IOS-XR-ipv6-new-dhcpv6d-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-alarm-logger-oper?module=Cisco-IOS-XR-infra-alarm-logger-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-oper?module=Cisco-IOS-XR-infra-rsi-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-cfg?module=Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ha-eem-oper?module=Cisco-IOS-XR-ha-eem-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-policy-repository-cfg?module=Cisco-IOS-XR-policy-repository-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-server-cfg?module=Cisco-IOS-XR-tty-server-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-ssh-oper?module=Cisco-IOS-XR-crypto-ssh-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-cdp-cfg?module=Cisco-IOS-XR-cdp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-protocol-radius-oper?module=Cisco-IOS-XR-aaa-protocol-radius-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-mpp-cfg?module=Cisco-IOS-XR-lib-mpp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-te-oper?module=Cisco-IOS-XR-mpls-te-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-drivers-media-eth-cfg?module=Cisco-IOS-XR-drivers-media-eth-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-common-acl-datatypes?module=Cisco-IOS-XR-common-acl-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-agent-oper?module=Cisco-IOS-XR-snmp-agent-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-mpp-oper?module=Cisco-IOS-XR-lib-mpp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-io-cfg?module=Cisco-IOS-XR-ipv6-io-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-alarm-logger-cfg?module=Cisco-IOS-XR-infra-alarm-logger-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-bundlemgr-oper?module=Cisco-IOS-XR-bundlemgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ospf-oper?module=Cisco-IOS-XR-ipv4-ospf-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-acl-oper?module=Cisco-IOS-XR-ipv4-acl-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-management-oper?module=Cisco-IOS-XR-tty-management-oper&amp;revision=2015-01-07</capability>
+ </capabilities>
+ <session-id>883166643</session-id>
+</hello>
+]]>]]>
+-------------------------------------------------------
+
+<hello> message was received from NETCONF agent.
+Now sending our <hello> message...
+
+--------------- Sent to NETCONF agent -----------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.1</capability>
+  </capabilities>
+</hello>
+]]>]]>
+-------------------------------------------------------
+
+
+Ready to send a request.
+Paste your request or enter get/get-config/commit/discard/bye:
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <get>
+      <filter type="subtree">
+        <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+        </bgp>
+      </filter>
+     </get>
+</rpc>
+##
+
+--------------- Sent to NETCONF agent -----------------
+
+#197
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get>
+<filter type="subtree">
+<bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+</bgp>
+</filter>
+</get>
+</rpc>
+##
+
+-------------------------------------------------------
+No data received!
+
+----------- Received from NETCONF agent --------------
+
+#326
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper">
+   <config-instances>
+    <config-instance>
+     <instance-name>default</instance-name>
+    </config-instance>
+   </config-instances>
+
+#1135
+   <instances>
+    <instance>
+     <instance-name>default</instance-name>
+     <instance-active>
+      <label-summary>
+       <stats>
+        <nbgp-label-alloc-type-gbl-ipv4>0</nbgp-label-alloc-type-gbl-ipv4>
+        <nbgp-label-alloc-type-gbl-ipv6>0</nbgp-label-alloc-type-gbl-ipv6>
+        <nbgp-label-alloc-type-vrf-ipv4>0</nbgp-label-alloc-type-vrf-ipv4>
+        <nbgp-label-alloc-type-vrf-ipv6>0</nbgp-label-alloc-type-vrf-ipv6>
+        <nbgp-label-alloc-type-ce-ipv4>0</nbgp-label-alloc-type-ce-ipv4>
+        <nbgp-label-alloc-type-ce-ipv6>0</nbgp-label-alloc-type-ce-ipv6>
+        <nbgp-label-alloc-type-tbl-ipv4>0</nbgp-label-alloc-type-tbl-ipv4>
+        <nbgp-label-alloc-type-tbl-ipv6>0</nbgp-label-alloc-type-tbl-ipv6>
+        <nbgp-label-alloc-type-vpn-ipv4>0</nbgp-label-alloc-type-vpn-ipv4>
+        <nbgp-label-alloc-type-vpn-ipv6>0</nbgp-label-alloc-type-vpn-ipv6>
+        <nbgp-label-alloc-type-asbr-nh>0</nbgp-label-alloc-type-asbr-nh>
+        <nbgp-labels>0</nbgp-labels>
+        <bgp-label-rpf-lists>0</bgp-label-rpf-lists>
+        <bgp-label-rpf-nodes>0</bgp-label-rpf-nodes>
+       </stats>
+      </label-summary>
+
+#107
+      <processes>
+       <process>
+        <process-id>0</process-id>
+       </process>
+      </processes>
+
+#3237
+      <update-generation-process>
+       <update-out-logging>false</update-out-logging>
+       <current-update-limit-process>536870912</current-update-limit-process>
+       <configured-update-limit-process>536870912</configured-update-limit-process>
+       <update-out-queue-messages>0</update-out-queue-messages>
+       <update-out-queue-size>0</update-out-queue-size>
+       <update-throttled>false</update-throttled>
+       <update-address-family>
+        <update-group-af-name>ipv4</update-group-af-name>
+        <current-update-limit-af>268435456</current-update-limit-af>
+        <update-out-queue-messages>0</update-out-queue-messages>
+        <update-out-queue-size>0</update-out-queue-size>
+        <update-throttled>false</update-throttled>
+        <update-update-group-count>0</update-update-group-count>
+        <update-sub-group-count>0</update-sub-group-count>
+        <sub-group-throttled-count>0</sub-group-throttled-count>
+        <refresh-sub-group-count>0</refresh-sub-group-count>
+        <refresh-sub-group-throttled-count>0</refresh-sub-group-throttled-count>
+        <filter-group-count>0</filter-group-count>
+        <neighbor-count>0</neighbor-count>
+       </update-address-family>
+       <update-statistics>
+        <update-out-queue-messages-high>0</update-out-queue-messages-high>
+        <update-out-queue-messages-cumulative>0</update-out-queue-messages-cumulative>
+        <update-out-queue-messages-discarded>0</update-out-queue-messages-discarded>
+        <update-out-queue-messages-cleared>0</update-out-queue-messages-cleared>
+        <update-out-queue-size-high>0</update-out-queue-size-high>
+        <update-out-queue-size-cumulative>0</update-out-queue-size-cumulative>
+        <update-out-queue-size-discarded>0</update-out-queue-size-discarded>
+        <update-out-queue-size-cleared>0</update-out-queue-size-cleared>
+        <last-update-discard-timestamp>
+         <seconds>0</seconds>
+         <nanoseconds>0</nanoseconds>
+        </last-update-discard-timestamp>
+        <last-update-discard-age>0</last-update-discard-age>
+        <last-update-cleared-timestamp>
+         <seconds>0</seconds>
+         <nanoseconds>0</nanoseconds>
+        </last-update-cleared-timestamp>
+        <last-update-cleard-age>0</last-update-cleard-age>
+        <update-throttle-count>0</update-throttle-count>
+        <last-update-throttle-timestamp>
+         <seconds>0</seconds>
+         <nanoseconds>0</nanoseconds>
+        </last-update-throttle-timestamp>
+        <last-update-throttle-age>0</last-update-throttle-age>
+        <update-recovery-count>0</update-recovery-count>
+        <last-update-recovery-timestamp>
+         <seconds>0</seconds>
+         <nanoseconds>0</nanoseconds>
+        </last-update-recovery-timestamp>
+        <last-update-recovery-age>0</last-update-recovery-age>
+        <update-memory-allocation-fail-count>0</update-memory-allocation-fail-count>
+        <last-update-memory-allocation-fail-timestamp>
+         <seconds>0</seconds>
+         <nanoseconds>0</nanoseconds>
+        </last-update-memory-allocation-fail-timestamp>
+        <last-update-memory-allocation-fail-age>0</last-update-memory-allocation-fail-age>
+       </update-statistics>
+      </update-generation-process>
+
+#108
+      <rpki-refresh-afs>
+       <rpki-refresh-af>
+        <af-name>ipv4</af-name>
+       </rpki-refresh-af>
+
+#83
+       <rpki-refresh-af>
+        <af-name>ipv6</af-name>
+       </rpki-refresh-af>
+
+#536
+      </rpki-refresh-afs>
+      <default-vrf>
+       <update-inbound-error-vrf>
+        <update-vrf-name>default</update-vrf-name>
+        <update-malformed-message-count>0</update-malformed-message-count>
+        <update-malformed-neighbor-count>0</update-malformed-neighbor-count>
+        <last-update-malformed-timestamp>
+         <seconds>0</seconds>
+         <nanoseconds>0</nanoseconds>
+        </last-update-malformed-timestamp>
+        <last-update-malformed-age>0</last-update-malformed-age>
+       </update-inbound-error-vrf>
+
+#4862
+       <afs>
+        <af>
+         <af-name>ipv4-unicast</af-name>
+         <global-af-process-info>
+          <vrf-name>default</vrf-name>
+          <af-name>ipv4</af-name>
+          <is-nsr-enabled>true</is-nsr-enabled>
+          <global>
+           <scanner-period>60</scanner-period>
+           <nh-tunnel-version>0</nh-tunnel-version>
+           <syncgrp-version>0</syncgrp-version>
+           <syncgrp-version>0</syncgrp-version>
+           <scan-prefixes>0</scan-prefixes>
+           <scan-segment-prefixes>100000</scan-segment-prefixes>
+           <scan-segments>0</scan-segments>
+           <inter-as-install-enabled>false</inter-as-install-enabled>
+           <global-mcast-enabled>false</global-mcast-enabled>
+           <segmented-mcast-enabled>false</segmented-mcast-enabled>
+           <gblafrpki-disable>false</gblafrpki-disable>
+           <gblafrpki-use-validity>false</gblafrpki-use-validity>
+           <gblafrpki-allow-invalid>false</gblafrpki-allow-invalid>
+           <gblafrpki-signal-ibgp>false</gblafrpki-signal-ibgp>
+           <update-wait-install-enabled>false</update-wait-install-enabled>
+           <rib-ack-requests>0</rib-ack-requests>
+           <rib-acks-received>0</rib-acks-received>
+           <rib-slow-acks>0</rib-slow-acks>
+           <rib-install>
+            <update-time>
+             <seconds>0</seconds>
+             <nanoseconds>0</nanoseconds>
+            </update-time>
+            <install-time>
+             <seconds>0</seconds>
+             <nanoseconds>0</nanoseconds>
+            </install-time>
+            <installed-count>0</installed-count>
+            <modified-count>0</modified-count>
+            <withdrawn-count>0</withdrawn-count>
+            <start-version>0</start-version>
+            <target-version>0</target-version>
+           </rib-install>
+           <is-perm-net-cfg>false</is-perm-net-cfg>
+           <perm-net-del-count>0</perm-net-del-count>
+           <perm-net-stale-del-count>0</perm-net-stale-del-count>
+           <perm-net-stale-mark-count>0</perm-net-stale-mark-count>
+           <perm-net-insert-count>0</perm-net-insert-count>
+           <perm-net-existing-count>0</perm-net-existing-count>
+           <perm-net-rpl-query-count>0</perm-net-rpl-query-count>
+           <perm-net-rpl-process-count>0</perm-net-rpl-process-count>
+           <perm-nbr-count>0</perm-nbr-count>
+           <rib-perm-pelem-not-found-count>0</rib-perm-pelem-not-found-count>
+           <rib-perm-path-not-found-count>0</rib-perm-path-not-found-count>
+           <rib-perm-pelem-found-count>0</rib-perm-pelem-found-count>
+           <rib-reg-path-found-count>0</rib-reg-path-found-count>
+           <rib-perm-path-found-count>0</rib-perm-path-found-count>
+           <perm-pelem-free-count>0</perm-pelem-free-count>
+           <perm-path-refresh-count>0</perm-path-refresh-count>
+           <perm-pelem-bump-count>0</perm-pelem-bump-count>
+           <perm-pelem-all-bump-count>0</perm-pelem-all-bump-count>
+          </global>
+          <vrf>
+           <table-is-active>true</table-is-active>
+           <table-id>3758096384</table-id>
+           <table-version>2</table-version>
+           <rd-version>2</rd-version>
+           <rib-version>1</rib-version>
+           <nsr-conv-version>4294967295</nsr-conv-version>
+           <nsr-is-conv>false</nsr-is-conv>
+           <client-reflection-enabled>true</client-reflection-enabled>
+           <dampening-enabled>false</dampening-enabled>
+           <ebgp-distance>20</ebgp-distance>
+           <ibgp-distance>200</ibgp-distance>
+           <aggregates-distance>200</aggregates-distance>
+           <dynamic-med-enabled>false</dynamic-med-enabled>
+           <dynamic-med-interval>10</dynamic-med-interval>
+           <dynamic-med-timer-running>false</dynamic-med-timer-running>
+           <dynamic-med-timer-value>0</dynamic-med-timer-value>
+           <dynamic-med-periodic-timer-running>false</dynamic-med-periodic-timer-running>
+           <dynamic-med-periodic-timer-value>0</dynamic-med-periodic-timer-value>
+           <rib-has-converged>true</rib-has-converged>
+           <rib-convergence-version>0</rib-convergence-version>
+           <is-rib-table-full>false</is-rib-table-full>
+           <rib-table-full-version>0</rib-table-full-version>
+           <nexthop-resolution-minimum-prefix-length-configured>false</nexthop-resolution-minimum-prefix-length-configured>
+           <nexthop-resolution-minimum-prefix-length>0</nexthop-resolution-minimum-prefix-length>
+           <selective-ebgp-multipath-enabled>false</selective-ebgp-multipath-enabled>
+           <selective-ibgp-multipath-enabled>false</selective-ibgp-multipath-enabled>
+           <selective-eibgp-multipath-enabled>false</selective-eibgp-multipath-enabled>
+           <rib-acked-table-version>1</rib-acked-table-version>
+          </vrf>
+         </global-af-process-info>
+
+#2897
+         <next-hop-address-families>
+          <next-hop-address-family>
+           <next-hop-af-name>ipv4-unicast</next-hop-af-name>
+           <next-hop-af-vrf-afs>
+            <next-hop-af-vrf-af>
+             <process-id>0</process-id>
+             <af-name>ipv4</af-name>
+             <gwaf-name>ipv4</gwaf-name>
+             <total-nexthops>0</total-nexthops>
+             <critical-trigger-delay>3000</critical-trigger-delay>
+             <non-critical-trigger-delay>10000</non-critical-trigger-delay>
+             <table-active>true</table-active>
+             <nh-rib-up>true</nh-rib-up>
+             <nh-rib-version>1</nh-rib-version>
+             <nh-nexthop-version>1</nh-nexthop-version>
+             <nh-table-id>3758096384</nh-table-id>
+             <epe-table-version>1</epe-table-version>
+             <epe-label-version>1</epe-label-version>
+             <epe-downloaded-version>1</epe-downloaded-version>
+             <performance-statistics>
+              <critical-notf-count>0</critical-notf-count>
+              <noncritical-notf-count>0</noncritical-notf-count>
+              <last-notf-bestpath-deletes>0</last-notf-bestpath-deletes>
+              <last-notf-bestpath-changes>0</last-notf-bestpath-changes>
+              <nh-sync-reg-calls>0</nh-sync-reg-calls>
+              <nha-sync-reg-calls>0</nha-sync-reg-calls>
+              <nha-sync-un-reg-calls>0</nha-sync-un-reg-calls>
+              <nh-pending-registrations>0</nh-pending-registrations>
+              <nh-peak-registrations>0</nh-peak-registrations>
+              <nh-batch-finish-calls>2</nh-batch-finish-calls>
+              <nh-flush-timer-calls>4</nh-flush-timer-calls>
+              <nh-last-sync-reg-ts>0</nh-last-sync-reg-ts>
+              <nh-last-a-sync-reg-ts>0</nh-last-a-sync-reg-ts>
+              <nh-last-a-sync-un-reg-ts>0</nh-last-a-sync-un-reg-ts>
+              <nh-last-batch-finish-ts>12176</nh-last-batch-finish-ts>
+              <nh-last-flush-timer-ts>12176</nh-last-flush-timer-ts>
+              <nhrib-update-calls>0</nhrib-update-calls>
+              <nhrib-update-time>0</nhrib-update-time>
+              <nexthops-sent-to-rib>0</nexthops-sent-to-rib>
+              <nexthops-resent-to-rib>0</nexthops-resent-to-rib>
+              <nexthops-removed-from-rib>0</nexthops-removed-from-rib>
+              <rib-sync-registers-failed>0</rib-sync-registers-failed>
+              <riba-sync-registers-failed>0</riba-sync-registers-failed>
+              <ribnh-reg-failed-for-no-tbl-id>0</ribnh-reg-failed-for-no-tbl-id>
+              <ribnh-reg-failed-for-no-rib-conn>0</ribnh-reg-failed-for-no-rib-conn>
+              <tunnel-walk-nh-not-found>0</tunnel-walk-nh-not-found>
+              <tunnel-walk-gw-not-found>0</tunnel-walk-gw-not-found>
+              <tunnel-walk-backup-creates>0</tunnel-walk-backup-creates>
+             </performance-statistics>
+            </next-hop-af-vrf-af>
+
+#367
+           </next-hop-af-vrf-afs>
+          </next-hop-address-family>
+         </next-hop-address-families>
+         <convergences>
+          <convergence>
+           <process-id>0</process-id>
+           <af-name>ipv4</af-name>
+           <has-converged>true</has-converged>
+           <are-write-queues-empty>true</are-write-queues-empty>
+          </convergence>
+
+------------------------------------------------------
+[dhjain@sjc-ads-4502 dhjain]$ /users/nnakamot/bin/netconf_client.py tcp localhost 5555
+Connected to NETCONF agent. Waiting for <hello> message...
+
+------------ Received from NETCONF agent --------------
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <capabilities>
+  <capability>urn:ietf:params:netconf:base:1.1</capability>
+  <capability>urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring</capability>
+  <capability>urn:ietf:params:netconf:capability:candidate:1.0</capability>
+  <capability>urn:ietf:params:netconf:capability:rollback-on-error:1.0</capability>
+  <capability>urn:ietf:params:netconf:capability:validate:1.1</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-oper-datatypes?module=Cisco-IOS-XR-mpls-ldp-oper-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-iarm-datatypes?module=Cisco-IOS-XR-ip-iarm-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg?module=Cisco-IOS-XR-subscriber-infra-tmplmgr-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-ceredundancymib-cfg?module=Cisco-IOS-XR-infra-ceredundancymib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-lsd-cfg?module=Cisco-IOS-XR-mpls-lsd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-cfg?module=Cisco-IOS-XR-aaa-locald-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-management-cfg?module=Cisco-IOS-XR-tty-management-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-datatypes?module=Cisco-IOS-XR-ipv4-bgp-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ma-cfg?module=Cisco-IOS-XR-ipv4-ma-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ma-oper?module=Cisco-IOS-XR-ipv4-ma-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ma-cfg?module=Cisco-IOS-XR-ipv6-ma-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-clns-isis-cfg?module=Cisco-IOS-XR-clns-isis-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ma-subscriber-cfg?module=Cisco-IOS-XR-ipv4-ma-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg?module=Cisco-IOS-XR-ipv4-io-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-shellutil-oper?module=Cisco-IOS-XR-shellutil-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-protocol-radius-cfg?module=Cisco-IOS-XR-aaa-protocol-radius-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-server-oper?module=Cisco-IOS-XR-tty-server-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-entstatemib-cfg?module=Cisco-IOS-XR-snmp-entstatemib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-oper?module=Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-oper&amp;revision=2015-01-07</capability>
+  <capability>urn:ietf:params:xml:ns:yang:ietf-yang-types?module=ietf-yang-types&amp;revision=2013-07-15</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-acl-datatypes?module=Cisco-IOS-XR-ipv6-acl-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-oper?module=Cisco-IOS-XR-mpls-ldp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-acl-datatypes?module=Cisco-IOS-XR-ipv4-acl-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg?module=Cisco-IOS-XR-ipv4-bgp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ha-eem-cfg?module=Cisco-IOS-XR-ha-eem-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2-eth-infra-datatypes?module=Cisco-IOS-XR-l2-eth-infra-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-policy-repository-oper?module=Cisco-IOS-XR-policy-repository-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-alarm-logger-datatypes?module=Cisco-IOS-XR-infra-alarm-logger-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-lsd-oper?module=Cisco-IOS-XR-mpls-lsd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-domain-cfg?module=Cisco-IOS-XR-ip-domain-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-parser-cfg?module=Cisco-IOS-XR-parser-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-statsd-oper?module=Cisco-IOS-XR-infra-statsd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ma-subscriber-cfg?module=Cisco-IOS-XR-ipv6-ma-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/cisco-xr-types?module=Cisco-IOS-XR-types&amp;revision=2015-01-19</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ma-oper?module=Cisco-IOS-XR-ipv6-ma-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-clns-isis-oper?module=Cisco-IOS-XR-clns-isis-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2vpn-cfg?module=Cisco-IOS-XR-l2vpn-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-man-xml-ttyagent-oper?module=Cisco-IOS-XR-man-xml-ttyagent-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-nd-cfg?module=Cisco-IOS-XR-ipv6-nd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-man-netconf-cfg?module=Cisco-IOS-XR-man-netconf-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-sam-cfg?module=Cisco-IOS-XR-crypto-sam-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-ifmib-cfg?module=Cisco-IOS-XR-snmp-ifmib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-new-dhcpv6d-cfg?module=Cisco-IOS-XR-ipv6-new-dhcpv6d-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-bundlemgr-cfg?module=Cisco-IOS-XR-bundlemgr-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-te-datatypes?module=Cisco-IOS-XR-mpls-te-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-keychain-cfg?module=Cisco-IOS-XR-lib-keychain-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2-eth-infra-cfg?module=Cisco-IOS-XR-l2-eth-infra-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-subscriber-cfg?module=Cisco-IOS-XR-infra-rsi-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-bfd-oper?module=Cisco-IOS-XR-ip-bfd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-shellutil-cfg?module=Cisco-IOS-XR-shellutil-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-bfd-cfg?module=Cisco-IOS-XR-ip-bfd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-frucontrolmib-cfg?module=Cisco-IOS-XR-snmp-frucontrolmib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-cfg?module=Cisco-IOS-XR-infra-rsi-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-ifmib-oper?module=Cisco-IOS-XR-snmp-ifmib-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-nd-subscriber-cfg?module=Cisco-IOS-XR-ipv6-nd-subscriber-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-oper?module=Cisco-IOS-XR-ipv4-bgp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-sam-oper?module=Cisco-IOS-XR-crypto-sam-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-ospfv3-oper?module=Cisco-IOS-XR-ipv6-ospfv3-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-qos-ma-oper?module=Cisco-IOS-XR-qos-ma-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-acl-oper?module=Cisco-IOS-XR-ipv6-acl-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-oper?module=Cisco-IOS-XR-ifmgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-rgmgr-cfg?module=Cisco-IOS-XR-rgmgr-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-statsd-cfg?module=Cisco-IOS-XR-infra-statsd-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-static-cfg?module=Cisco-IOS-XR-ip-static-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-nd-oper?module=Cisco-IOS-XR-ipv6-nd-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-oper?module=Cisco-IOS-XR-ipv4-io-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-infra-cfg?module=Cisco-IOS-XR-infra-infra-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-entitymib-cfg?module=Cisco-IOS-XR-snmp-entitymib-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-man-xml-ttyagent-cfg?module=Cisco-IOS-XR-man-xml-ttyagent-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-cfg?module=Cisco-IOS-XR-mpls-ldp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-vty-cfg?module=Cisco-IOS-XR-tty-vty-cfg&amp;revision=2015-01-07</capability>
+  <capability>urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&amp;revision=2013-07-15</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2vpn-oper?module=Cisco-IOS-XR-l2vpn-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-clns-isis-datatypes?module=Cisco-IOS-XR-clns-isis-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-keychain-oper?module=Cisco-IOS-XR-lib-keychain-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-cfg-datatypes?module=Cisco-IOS-XR-mpls-ldp-cfg-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-qos-ma-cfg?module=Cisco-IOS-XR-qos-ma-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-io-oper?module=Cisco-IOS-XR-ipv6-io-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-management-datatypes?module=Cisco-IOS-XR-tty-management-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-config-mibs-cfg?module=Cisco-IOS-XR-config-mibs-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-rgmgr-oper?module=Cisco-IOS-XR-rgmgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-drivers-media-eth-oper?module=Cisco-IOS-XR-drivers-media-eth-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-ssh-cfg?module=Cisco-IOS-XR-crypto-ssh-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-cdp-oper?module=Cisco-IOS-XR-cdp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-plat-chas-invmgr-oper?module=Cisco-IOS-XR-plat-chas-invmgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-agent-cfg?module=Cisco-IOS-XR-snmp-agent-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ip-domain-oper?module=Cisco-IOS-XR-ip-domain-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-l2-eth-infra-oper?module=Cisco-IOS-XR-l2-eth-infra-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-locald-oper?module=Cisco-IOS-XR-aaa-locald-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-new-dhcpv6d-oper?module=Cisco-IOS-XR-ipv6-new-dhcpv6d-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-alarm-logger-oper?module=Cisco-IOS-XR-infra-alarm-logger-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-rsi-oper?module=Cisco-IOS-XR-infra-rsi-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-cfg?module=Cisco-IOS-XR-infra-syslog(LOG_DEBUG,"%s: %u: ",__FUNCTION__,__LINE__);-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ha-eem-oper?module=Cisco-IOS-XR-ha-eem-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-policy-repository-cfg?module=Cisco-IOS-XR-policy-repository-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-server-cfg?module=Cisco-IOS-XR-tty-server-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-crypto-ssh-oper?module=Cisco-IOS-XR-crypto-ssh-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-cdp-cfg?module=Cisco-IOS-XR-cdp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-aaa-protocol-radius-oper?module=Cisco-IOS-XR-aaa-protocol-radius-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-mpp-cfg?module=Cisco-IOS-XR-lib-mpp-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-te-oper?module=Cisco-IOS-XR-mpls-te-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-drivers-media-eth-cfg?module=Cisco-IOS-XR-drivers-media-eth-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-common-acl-datatypes?module=Cisco-IOS-XR-common-acl-datatypes&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-snmp-agent-oper?module=Cisco-IOS-XR-snmp-agent-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-lib-mpp-oper?module=Cisco-IOS-XR-lib-mpp-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv6-io-cfg?module=Cisco-IOS-XR-ipv6-io-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-infra-alarm-logger-cfg?module=Cisco-IOS-XR-infra-alarm-logger-cfg&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-bundlemgr-oper?module=Cisco-IOS-XR-bundlemgr-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ospf-oper?module=Cisco-IOS-XR-ipv4-ospf-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-acl-oper?module=Cisco-IOS-XR-ipv4-acl-oper&amp;revision=2015-01-07</capability>
+  <capability>http://cisco.com/ns/yang/Cisco-IOS-XR-tty-management-oper?module=Cisco-IOS-XR-tty-management-oper&amp;revision=2015-01-07</capability>
+ </capabilities>
+ <session-id>709760388</session-id>
+</hello>
+]]>]]>
+-------------------------------------------------------
+
+<hello> message was received from NETCONF agent.
+Now sending our <hello> message...
+
+--------------- Sent to NETCONF agent -----------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.1</capability>
+  </capabilities>
+</hello>
+]]>]]>
+-------------------------------------------------------
+
+
+Ready to send a request.
+Paste your request or enter get/get-config/commit/discard/bye:
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <get-config>
+        <source>
+            <running/>
+        </source>
+    <filter type = "subtree">
+    <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+    <global />
+    </bgp>
+    </filter>
+    </get-config>
+</rpc>
+##
+
+--------------- Sent to NETCONF agent -----------------
+
+#253
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+<filter type = "subtree">
+<bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+<global />
+</bgp>
+</filter>
+</get-config>
+</rpc>
+##
+
+-------------------------------------------------------
+
+----------- Received from NETCONF agent --------------
+
+#445
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <rpc-error>
+  <error-type>protocol</error-type>
+  <error-tag>unknown-element</error-tag>
+  <error-severity>error</error-severity>
+  <error-path ns1="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">ns1:bgp/ns1:global</error-path>
+  <error-info>
+   <bad-element>global</bad-element>
+  </error-info>
+ </rpc-error>
+</rpc-reply>
+
+##
+
+------------------------------------------------------
+
+Ready to send a request.
+Paste your request or enter get/get-config/commit/discard/bye:
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <get-config>
+        <source>
+            <running/>
+        </source>
+    <filter type = "subtree">
+    <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+    </bgp>
+    </filter>
+    </get-config>
+</rpc>
+##
+
+--------------- Sent to NETCONF agent -----------------
+
+#242
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<get-config>
+<source>
+<running/>
+</source>
+<filter type = "subtree">
+<bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+</bgp>
+</filter>
+</get-config>
+</rpc>
+##
+
+-------------------------------------------------------
+
+----------- Received from NETCONF agent --------------
+
+#690
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <data>
+  <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+   <instance>
+    <instance-name>default</instance-name>
+    <instance-as>
+     <as>0</as>
+     <four-byte-as>
+      <as>12</as>
+      <bgp-running></bgp-running>
+      <default-vrf>
+       <global>
+        <router-id>10.10.10.1</router-id>
+        <global-afs>
+         <global-af>
+          <af-name>ipv4-unicast</af-name>
+          <enable></enable>
+         </global-af>
+        </global-afs>
+       </global>
+      </default-vrf>
+     </four-byte-as>
+    </instance-as>
+   </instance>
+  </bgp>
+
+#22
+ </data>
+</rpc-reply>
+
+##
+
+------------------------------------------------------
+
+Ready to send a request.
+Paste your request or enter get/get-config/commit/discard/bye:
+

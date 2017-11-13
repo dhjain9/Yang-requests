@@ -1,0 +1,713 @@
+module: bgp
+ +rw /bgp!
+ +rw /bgp/global
+ +rw /bgp/global/as   inet:as-number 
+ +rw /bgp/global/router-id?   inet:ipv4-address 
+ +rw /bgp/global/default-route-distance
+ +rw /bgp/global/default-route-distance/external-route-distance?   uint8 
+ +rw /bgp/global/default-route-distance/internal-route-distance?   uint8 
+ +rw /bgp/global/confederation!
+ +rw /bgp/global/confederation/identifier?   inet:as-number 
+ +rw /bgp/global/confederation/member-as*   inet:as-number 
+ +rw /bgp/global/use-multiple-paths!
+ +rw /bgp/global/use-multiple-paths/ebgp
+ +rw /bgp/global/use-multiple-paths/ebgp/allow-multiple-as?   boolean (Default:false)
+ +rw /bgp/global/use-multiple-paths/ebgp/maximum-paths?   uint32 (Default:1)
+ +rw /bgp/global/use-multiple-paths/ibgp
+ +rw /bgp/global/use-multiple-paths/ibgp/maximum-paths?   uint32 (Default:1)
+ +rw /bgp/global/afi-safi[afi-safi-name]*
+ +rw /bgp/global/afi-safi[afi-safi-name]/afi-safi-name   identityref 
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options/always-compare-med?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options/ignore-as-path-length?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options/external-compare-router-id?   boolean (Default:true)
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options/advertise-inactive-routes?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options/enable-aigp?   empty 
+ +rw /bgp/global/afi-safi[afi-safi-name]/route-selection-options/ignore-next-hop-igp-metric?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/use-multiple-paths!
+ +rw /bgp/global/afi-safi[afi-safi-name]/use-multiple-paths/ebgp
+ +rw /bgp/global/afi-safi[afi-safi-name]/use-multiple-paths/ebgp/allow-multiple-as?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/use-multiple-paths/ebgp/maximum-paths?   uint32 (Default:1)
+ +rw /bgp/global/afi-safi[afi-safi-name]/use-multiple-paths/ibgp
+ +rw /bgp/global/afi-safi[afi-safi-name]/use-multiple-paths/ibgp/maximum-paths?   uint32 (Default:1)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/enabled?   boolean (Default:false)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn!
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/global/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/restart-timer?   decimal64 
+ +ro /bgp/global/bgp-global-state
+ +rw /bgp/peer-group[group-name]*
+ +rw /bgp/peer-group[group-name]/group-name   string 
+ +ro /bgp/peer-group[group-name]/bgp-group-common-state
+ +rw /bgp/peer-group[group-name]/description?   string 
+ +rw /bgp/peer-group[group-name]/graceful-restart!
+ +rw /bgp/peer-group[group-name]/graceful-restart/restart-time?   uint16 
+ +rw /bgp/peer-group[group-name]/graceful-restart/stale-routes-time?   decimal64 
+ +rw /bgp/peer-group[group-name]/apply-policy
+ +rw /bgp/peer-group[group-name]/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]*
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/afi-safi-name   identityref 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn!
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/auth-password?   string 
+ +rw /bgp/peer-group[group-name]/peer-type?   peer-type 
+ +rw /bgp/peer-group[group-name]/timers
+ +rw /bgp/peer-group[group-name]/timers/connect-retry?   decimal64 (Default:30)
+ +rw /bgp/peer-group[group-name]/timers/hold-time?   decimal64 (Default:90)
+ +rw /bgp/peer-group[group-name]/timers/keepalive-interval?   decimal64 (Default:30)
+ +rw /bgp/peer-group[group-name]/timers/minimum-advertisement-interval?   decimal64 (Default:30)
+ +rw /bgp/peer-group[group-name]/timers/send-update-delay?   decimal64 
+ +rw /bgp/peer-group[group-name]/ebgp-multihop
+ +rw /bgp/peer-group[group-name]/ebgp-multihop/multihop-ttl?   uint8 (Default:1)
+ +rw /bgp/peer-group[group-name]/route-reflector
+ +rw /bgp/peer-group[group-name]/route-reflector/route-reflector-cluster-id?   rr-cluster-id-type 
+ +rw /bgp/peer-group[group-name]/route-reflector/route-reflector-client?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/remove-private-as?   remove-private-as-option 
+ +rw /bgp/peer-group[group-name]/bgp-logging-options
+ +rw /bgp/peer-group[group-name]/bgp-logging-options/log-neighbor-state-changes?   boolean (Default:true)
+ +rw /bgp/peer-group[group-name]/transport-options
+ +rw /bgp/peer-group[group-name]/transport-options/tcp-mss?   uint16 
+ +rw /bgp/peer-group[group-name]/transport-options/mtu-discovery?   boolean 
+ +rw /bgp/peer-group[group-name]/transport-options/passive-mode?   boolean 
+ +rw /bgp/peer-group[group-name]/local-address?   inet:ip-address 
+ +rw /bgp/peer-group[group-name]/route-flap-damping?   boolean 
+ +rw /bgp/peer-group[group-name]/send-community?   community-type (Default:NONE)
+ +rw /bgp/peer-group[group-name]/error-handling
+ +rw /bgp/peer-group[group-name]/error-handling/treat-as-withdraw?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/as-path-options
+ +rw /bgp/peer-group[group-name]/as-path-options/allow-own-as?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/as-path-options/replace-peer-as?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/add-paths!
+ +rw /bgp/peer-group[group-name]/add-paths/receive?   empty 
+ +rw /bgp/peer-group[group-name]/add-paths/send-max?   uint8 
+ +rw /bgp/peer-group[group-name]/use-multiple-paths!
+ +rw /bgp/peer-group[group-name]/use-multiple-paths/ebgp
+ +rw /bgp/peer-group[group-name]/use-multiple-paths/ebgp/allow-multiple-as?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/use-multiple-paths/ebgp/maximum-paths?   uint32 (Default:1)
+ +rw /bgp/peer-group[group-name]/use-multiple-paths/ibgp
+ +rw /bgp/peer-group[group-name]/use-multiple-paths/ibgp/maximum-paths?   uint32 (Default:1)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]*
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/neighbor-address   inet:ip-address 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/peer-as   inet:as-number 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/description?   string 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/graceful-restart!
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/graceful-restart/restart-time?   uint16 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/graceful-restart/stale-routes-time?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]*
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/afi-safi-name   identityref 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/enabled?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn!
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/auth-password?   string 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/peer-type?   peer-type 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/timers
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/timers/connect-retry?   decimal64 (Default:30)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/timers/hold-time?   decimal64 (Default:90)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/timers/keepalive-interval?   decimal64 (Default:30)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/timers/minimum-advertisement-interval?   decimal64 (Default:30)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/timers/send-update-delay?   decimal64 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/ebgp-multihop
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/ebgp-multihop/multihop-ttl?   uint8 (Default:1)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/route-reflector
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/route-reflector/route-reflector-cluster-id?   rr-cluster-id-type 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/route-reflector/route-reflector-client?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/remove-private-as?   remove-private-as-option 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/bgp-logging-options
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/bgp-logging-options/log-neighbor-state-changes?   boolean (Default:true)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/transport-options
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/transport-options/tcp-mss?   uint16 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/transport-options/mtu-discovery?   boolean 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/transport-options/passive-mode?   boolean 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/local-address?   inet:ip-address 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/route-flap-damping?   boolean 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/send-community?   community-type (Default:NONE)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/error-handling
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/error-handling/treat-as-withdraw?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/as-path-options
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/as-path-options/allow-own-as?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/as-path-options/replace-peer-as?   boolean (Default:false)
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/add-paths!
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/add-paths/receive?   empty 
+ +rw /bgp/peer-group[group-name]/neighbor[neighbor-address]/add-paths/send-max?   uint8 
+ +ro /bgp/peer-group[group-name]/neighbor[neighbor-address]/bgp-neighbor-common-state
+ +rw /bgp/neighbor[neighbor-address]*
+ +rw /bgp/neighbor[neighbor-address]/neighbor-address   inet:ip-address 
+ +rw /bgp/neighbor[neighbor-address]/peer-as   inet:as-number 
+ +rw /bgp/neighbor[neighbor-address]/description?   string 
+ +rw /bgp/neighbor[neighbor-address]/graceful-restart!
+ +rw /bgp/neighbor[neighbor-address]/graceful-restart/restart-time?   uint16 
+ +rw /bgp/neighbor[neighbor-address]/graceful-restart/stale-routes-time?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]*
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/afi-safi-name   identityref 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-unicast/send-default-route?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv4-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/ipv6-labelled-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-unicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv4-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l3vpn-ipv6-multicast/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/enabled?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-vpls/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn!
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/max-prefixes?   uint32 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/shutdown-threshold-pct?   percentage 
+ +rw /bgp/neighbor[neighbor-address]/afi-safi[afi-safi-name]/l2vpn-evpn/prefix-limit/restart-timer?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/auth-password?   string 
+ +rw /bgp/neighbor[neighbor-address]/peer-type?   peer-type 
+ +rw /bgp/neighbor[neighbor-address]/timers
+ +rw /bgp/neighbor[neighbor-address]/timers/connect-retry?   decimal64 (Default:30)
+ +rw /bgp/neighbor[neighbor-address]/timers/hold-time?   decimal64 (Default:90)
+ +rw /bgp/neighbor[neighbor-address]/timers/keepalive-interval?   decimal64 (Default:30)
+ +rw /bgp/neighbor[neighbor-address]/timers/minimum-advertisement-interval?   decimal64 (Default:30)
+ +rw /bgp/neighbor[neighbor-address]/timers/send-update-delay?   decimal64 
+ +rw /bgp/neighbor[neighbor-address]/ebgp-multihop
+ +rw /bgp/neighbor[neighbor-address]/ebgp-multihop/multihop-ttl?   uint8 (Default:1)
+ +rw /bgp/neighbor[neighbor-address]/route-reflector
+ +rw /bgp/neighbor[neighbor-address]/route-reflector/route-reflector-cluster-id?   rr-cluster-id-type 
+ +rw /bgp/neighbor[neighbor-address]/route-reflector/route-reflector-client?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/remove-private-as?   remove-private-as-option 
+ +rw /bgp/neighbor[neighbor-address]/bgp-logging-options
+ +rw /bgp/neighbor[neighbor-address]/bgp-logging-options/log-neighbor-state-changes?   boolean (Default:true)
+ +rw /bgp/neighbor[neighbor-address]/transport-options
+ +rw /bgp/neighbor[neighbor-address]/transport-options/tcp-mss?   uint16 
+ +rw /bgp/neighbor[neighbor-address]/transport-options/mtu-discovery?   boolean 
+ +rw /bgp/neighbor[neighbor-address]/transport-options/passive-mode?   boolean 
+ +rw /bgp/neighbor[neighbor-address]/local-address?   inet:ip-address 
+ +rw /bgp/neighbor[neighbor-address]/route-flap-damping?   boolean 
+ +rw /bgp/neighbor[neighbor-address]/send-community?   community-type (Default:NONE)
+ +rw /bgp/neighbor[neighbor-address]/error-handling
+ +rw /bgp/neighbor[neighbor-address]/error-handling/treat-as-withdraw?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/as-path-options
+ +rw /bgp/neighbor[neighbor-address]/as-path-options/allow-own-as?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/as-path-options/replace-peer-as?   boolean (Default:false)
+ +rw /bgp/neighbor[neighbor-address]/add-paths!
+ +rw /bgp/neighbor[neighbor-address]/add-paths/receive?   empty 
+ +rw /bgp/neighbor[neighbor-address]/add-paths/send-max?   uint8 
+ +ro /bgp/neighbor[neighbor-address]/bgp-neighbor-common-state
+ +rw /bgp/apply-policy
+ +rw /bgp/apply-policy/import-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/apply-policy/default-import-policy?   default-policy-type (Default:REJECT-ROUTE)
+ +rw /bgp/apply-policy/export-policies*   -> /rpol:routing-policy/policy-definition/name 
+ +rw /bgp/apply-policy/default-export-policy?   default-policy-type (Default:REJECT-ROUTE)

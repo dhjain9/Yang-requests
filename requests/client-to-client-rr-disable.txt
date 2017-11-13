@@ -1,0 +1,50 @@
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
+<edit-config>
+<target><candidate/></target>
+<config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+<bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+<instance>
+<instance-name>default</instance-name>
+<instance-as>
+<as>0</as>
+<four-byte-as>
+<default-vrf>
+<global>
+<global-afs>
+<global-af>
+<disable-cluster-client-to-client-rrs>
+<disable-cluster-client-to-client-rr>
+<cluster-type>number</cluster-type>
+<number>
+<cluster-id-number>2</cluster-id-number>
+</number>
+</disable-cluster-client-to-client-rr>
+</disable-cluster-client-to-client-rrs>
+<af-name>ipv4-unicast</af-name>
+<enable/>
+</global-af>
+</global-afs>
+</global>
+</default-vrf>
+<bgp-running/>
+<as>1</as>
+</four-byte-as>
+</instance-as>
+</instance>
+</bgp>
+</config>
+</edit-config>
+</rpc>
+
+##
+
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<commit/>
+</rpc>
+##
+
+
+
+

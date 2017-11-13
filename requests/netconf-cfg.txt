@@ -1,0 +1,19 @@
+<edit-config>
+    <target>
+      <candidate/>
+    </target>
+    <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+      <bgp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-bgp-cfg">
+        <instance>
+         <instance-name>200</instance-name>
+          <instance-as>
+            <as>0</as>
+            <four-byte-as>
+             <bgp-running/> 
+             <as>1</as>
+           </four-byte-as>
+          </instance-as>
+        </instance>
+      </bgp>
+    </config>
+  </edit-config>
